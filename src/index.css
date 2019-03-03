@@ -1,0 +1,12 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#root {
+  background-color: #887f60;
+  min-height: 100vh;
+  min-width: 100vw;
+}
