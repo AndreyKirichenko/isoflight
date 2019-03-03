@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withObserver, withWindow} from '../HOCs';
+import { compose } from '../../helpers';
 
 class Map extends Component {
   componentDidMount() {
@@ -31,4 +32,7 @@ class Map extends Component {
   }
 }
 
-export default withObserver(withWindow(Map));
+export default compose(
+  withObserver,
+  withWindow)
+(Map);
