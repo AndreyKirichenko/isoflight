@@ -36,7 +36,7 @@ const withObserver = (View) => {
     }
 
     _toValidArrayIndex(num) {
-      return (num >= 0) ? num : 0;
+      return num >= 0 ? num : 0;
     }
 
     componentDidMount() {
@@ -47,15 +47,21 @@ const withObserver = (View) => {
 
     update = () => {
       this.setState((prevState) => {
-        let { x, y, speedX, speedY } = prevState.observer;
+        const { x, y, speedX, speedY, radius } = prevState.observer;
 
-        const observer = Object.assign({}, prevState.observer, {
+        const newObserverData = {
           x: x + speedX,
-          y: y + speedY
-        });
+          y: y + speedY,
+          speedX,
+          speedY,
+          radius
+        };
 
         return {
-          observer
+          observer: {
+            ...newObserverData,
+            ...this.getRangesBy(newObserverData)
+          }
         };
       });
     };
