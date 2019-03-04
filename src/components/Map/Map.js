@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { withObserver, withWindow} from '../HOCs';
-import { compose } from '../../helpers';
+import { withMapPlanner, withObserver, withWindow} from '../HOCs';
+import compose from '../../helpers/compose';
 
 class Map extends Component {
   componentDidMount() {
-    console.log('Map is mounted with props', this.props);
+    // console.log('Map is mounted with props', this.props);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log('Map is updated with props', this.props);
+    // console.log('Map is updated with props', this.props);
   }
 
   render() {
@@ -34,5 +34,6 @@ class Map extends Component {
 
 export default compose(
   withObserver,
-  withWindow)
-(Map);
+  withWindow,
+  withMapPlanner
+)(Map);
