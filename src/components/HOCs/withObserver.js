@@ -40,20 +40,22 @@ const withObserver = (View) => {
     }
 
     componentDidMount() {
-      setInterval(() => {
+      setTimeout(() => {
         this.update();
-      }, 5000);
+        console.log('--');
+      }, 3000);
     }
 
     update = () => {
       this.setState((prevState) => {
-        const { x, y, speedX, speedY, radius } = prevState.observer;
+        const { x, y, speedX, speedY, radius, scale } = prevState.observer;
 
         const newObserverData = {
           x: x + speedX,
           y: y + speedY,
           speedX,
           speedY,
+          scale,
           radius
         };
 

@@ -1,3 +1,5 @@
 import summer from './summer';
+import winter from './winter';
+import groundObjects from './groundObjects';
 
-export { summer };
+export { summer, winter, groundObjects };

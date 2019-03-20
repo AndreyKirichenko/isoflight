@@ -2,7 +2,7 @@ const groundObjects = {
   plantLines: {
     poplars: {
       quantity: 12,
-      lightPart: {
+      lightColor: {
         minHeight: 15,
         maxHeight: 30,
         pointsBetween: 40,
@@ -11,7 +11,7 @@ const groundObjects = {
         fluctCX: 0.2,
       },
 
-      darkPart: {
+      darkColor: {
         minHeight: 5,
         maxHeight: 20,
         pointsBetween: 60,
@@ -23,7 +23,7 @@ const groundObjects = {
 
     willows: {
       quantity: 12,
-      lightPart: {
+      lightColor: {
         minHeight: 10,
         maxHeight: 20,
         pointsBetween: 30,
@@ -32,7 +32,7 @@ const groundObjects = {
         fluctCX: 1,
       },
 
-      darkPart: {
+      darkColor: {
         minHeight: 4,
         maxHeight: 15,
         pointsBetween: 60,
@@ -44,7 +44,7 @@ const groundObjects = {
 
     gardenTrees: {
       quantity: 16,
-      lightPart: {
+      lightColor: {
         minHeight: 4,
         maxHeight: 12,
         pointsBetween: 30,
@@ -53,7 +53,7 @@ const groundObjects = {
         fluctCX: 0.25,
       },
 
-      darkPart: {
+      darkColor: {
         minHeight: 2,
         maxHeight: 8,
         pointsBetween: 60,
@@ -65,7 +65,7 @@ const groundObjects = {
 
     grapes: {
       quantity: 20,
-      lightPart: {
+      lightColor: {
         minHeight: 4,
         maxHeight: 10,
         pointsBetween: 30,
@@ -74,7 +74,7 @@ const groundObjects = {
         fluctCX: 0.5,
       },
 
-      darkPart: {
+      darkColor: {
         minHeight: 2,
         maxHeight: 4,
         pointsBetween: 60,
@@ -86,7 +86,7 @@ const groundObjects = {
 
     bed: {
       quantity: 32,
-      lightPart: {
+      lightColor: {
         minHeight: 1,
         maxHeight: 4,
         pointsBetween: 20,
@@ -95,7 +95,7 @@ const groundObjects = {
         fluctCX: 0.1,
       },
 
-      darkPart: {
+      darkColor: {
         minHeight: 1,
         maxHeight: 2,
         pointsBetween: 40,
@@ -107,7 +107,7 @@ const groundObjects = {
 
     furrow: {
       quantity: 60,
-      lightPart: {
+      lightColor: {
         minHeight: 0,
         maxHeight: 1,
         pointsBetween: 20,
@@ -118,7 +118,7 @@ const groundObjects = {
     },
     grass: {
       quantity: 60,
-      lightPart: {
+      lightColor: {
         minHeight: 0,
         maxHeight: 1,
         pointsBetween: 20,

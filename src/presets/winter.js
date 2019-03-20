@@ -1,31 +1,31 @@
 export default {
   plantLines: {
     poplars: {
-      lightPart: {
+      lightColor: {
         fill: '#00678b'
       },
 
-      darkPart: {
+      darkColor: {
         fill: '#4c4476'
       }
     },
 
     willows: {
-      lightPart: {
+      lightColor: {
         fill: '#00678b'
       },
 
-      darkPart: {
+      darkColor: {
         fill: '#4c4476'
       }
     },
 
     gardenTrees: {
-      lightPart: {
+      lightColor: {
         fill: '#00678b'
       },
 
-      darkPart: {
+      darkColor: {
         fill: '#4c4476'
       }
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withMapPlanner, withObserver, withWindow} from '../HOCs';
+import { withMapPresetter, withObserver, withWindow} from '../HOCs';
 import compose from '../../helpers/compose';
 
 class Map extends Component {
@@ -35,5 +35,5 @@ class Map extends Component {
 export default compose(
   withObserver,
   withWindow,
-  withMapPlanner
+  withMapPresetter
 )(Map);

@@ -1,5 +1,5 @@
-import withMapPlanner from './withMapPlanner';
+import withMapPresetter from './withMapPresetter';
 import withObserver from './withObserver';
 import withWindow from './withWindow';
 
-export { withMapPlanner, withObserver, withWindow };
+export { withMapPresetter, withObserver, withWindow };
