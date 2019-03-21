@@ -72,45 +72,47 @@ class Shapes {
   }
 
   field(sideLength = 240) {
-    if(this.cached.fields[sideLength]) {
-      return this.cached.fields[sideLength];
-    }
+    return new Promise((resolve) => {
+      if(this.cached.fields[sideLength]) {
+        return this.cached.fields[sideLength];
+      }
 
-    let coords = [];
+      let coords = [];
 
-    coords[0] = {
-      type: 'M',
-      x: 0,
-      y: 0
-    };
+      coords[0] = {
+        type: 'M',
+        x: 0,
+        y: 0
+      };
 
-    coords[1] = {
-      type: 'L',
-      x: sideLength,
-      y: Isometry.getY(sideLength)
-    };
+      coords[1] = {
+        type: 'L',
+        x: sideLength,
+        y: Isometry.getY(sideLength)
+      };
 
-    coords[2] = {
-      type: 'L',
-      x: 0,
-      y: coords[1].y * 2
-    };
+      coords[2] = {
+        type: 'L',
+        x: 0,
+        y: coords[1].y * 2
+      };
 
-    coords[3] = {
-      type: 'L',
-      x: -coords[1].x,
-      y: coords[1].y
-    };
+      coords[3] = {
+        type: 'L',
+        x: -coords[1].x,
+        y: coords[1].y
+      };
 
-    coords[4] = {
-      type: 'L',
-      x: 0,
-      y: 0
-    };
+      coords[4] = {
+        type: 'L',
+        x: 0,
+        y: 0
+      };
 
-    this.cached.fields[sideLength] = coords;
+      this.cached.fields[sideLength] = coords;
 
-    return coords;
+      resolve(coords);
+    });
   }
 }
 

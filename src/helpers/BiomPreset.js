@@ -1,6 +1,7 @@
 import Isometry from "./Isometry";
 import Random from "./Random";
 import { summer, winter } from "../presets";
+import Shapes from './Shapes';
 
 
 class BiomPreset {
@@ -9,7 +10,7 @@ class BiomPreset {
     const frontalCoords =
       Isometry.toFrontalCoords(x * scale, y * scale);
 
-    const data = BiomPreset.getRandomBiomPreset(season);
+    const data = BiomPreset.getRandomBiomPreset(season, scale);
 
     return {
       scale,
@@ -21,7 +22,7 @@ class BiomPreset {
     };
   }
 
-  static getRandomFieldPreset = (colorSchemes) => {
+  static getRandomFieldPreset = (colorSchemes, scale) => {
     const fieldId = Random.getRandomPropertyName(colorSchemes.fields);
 
     const name = Random.getRandomPropertyName(colorSchemes.fields[fieldId]);
@@ -30,18 +31,25 @@ class BiomPreset {
 
     const color = Random.getRandomArrayItem(colors);
 
+    const getShapes = Shapes.field(scale);
+
     return {
-      name,
-      color
+      fieldId,
+      color,
+      getShapes
     }
   };
 
-  static getRandomBorderLinePreset = (colorSchemes) => {
+  static getRandomPlantPreset = ({ colorSchemes, fieldId, scale } ) => {
+
+  };
+
+  static getRandomBorderLinePreset = (colorSchemes, scale) => {
     const name = Random.getRandomPropertyName(colorSchemes.plantLines);
 
-    const borderLinePreset = {...colorSchemes.plantLines[name]};
+    const borderLine = {...colorSchemes.plantLines[name]};
 
-    const { lightColor, darkColor } = borderLinePreset;
+    const { lightColor, darkColor } = borderLine;
 
     return {
       name,
@@ -50,19 +58,19 @@ class BiomPreset {
     }
   };
 
-  static getRandomBiomPreset = (season = 'summer') => {
+  static getRandomBiomPreset = (season = 'summer', scale) => {
     const colorSchemes = BiomPreset.getColorPresetsBy(season);
 
-    const fieldPreset = BiomPreset.getRandomFieldPreset(colorSchemes);
+    const field = BiomPreset.getRandomFieldPreset(colorSchemes, scale);
 
-    const borderLinePresetX = BiomPreset.getRandomBorderLinePreset(colorSchemes);
+    const borderLineX = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
 
-    const borderLinePresetY = BiomPreset.getRandomBorderLinePreset(colorSchemes);
+    const borderLineY = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
 
     return {
-      fieldPreset,
-      borderLinePresetX,
-      borderLinePresetY
+      field,
+      borderLineX,
+      borderLineY
     };
   };
 

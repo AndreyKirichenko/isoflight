@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withMapPresetter, withObserver, withWindow} from '../HOCs';
 import compose from '../../helpers/compose';
+import Bioms from '../Bioms'
 
 class Map extends Component {
   componentDidMount() {
@@ -25,7 +26,7 @@ class Map extends Component {
            viewBox={viewBox}>
 
         <g transform={transform}>
-
+          <Bioms {...this.props} />
         </g>
       </svg>
     );

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import BiomPreset from '../../helpers/BiomPreset';
+import flatten from '../../helpers/flatten';
 
 const withMapPresetter = (View) => {
   return class extends Component {
 
     state = {
-      biomPresets: [],
-      isGenerating: false
+      bioms: []
     };
 
     componentDidMount() {
@@ -27,28 +27,27 @@ const withMapPresetter = (View) => {
       this.setState((state, props) => {
         const { x1, x2, y1, y2, scale } = props.observer;
 
-        let biomPresets = [...state.biomPresets];
+        let bioms = [...state.bioms];
 
         for(let x = x1; x <= x2; x++) {
 
-          if(!biomPresets[x]) {
-            biomPresets[x] = [];
+          if(!bioms[x]) {
+            bioms[x] = [];
           }
 
           for(let y = y1; y <= y2; y++) {
-            if(biomPresets[x][y]) break;
-            biomPresets[x][y] = BiomPreset.create(x, y, scale);
+            if(bioms[x][y]) break;
+            bioms[x][y] = BiomPreset.create(x, y, scale);
           }
         }
 
         return {
-          biomPresets
+          bioms: flatten(bioms)
         };
       });
     }
 
     render() {
-      console.log('render');
       return <View {...this.state} {...this.props} />
     }
   }

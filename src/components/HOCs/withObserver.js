@@ -42,8 +42,7 @@ const withObserver = (View) => {
     componentDidMount() {
       setTimeout(() => {
         this.update();
-        console.log('--');
-      }, 3000);
+      }, 2000);
     }
 
     update = () => {
