@@ -11,7 +11,7 @@ const Biom = (props) => {
     // return null;
 
     return (
-      <Field {...props.data.field}/>
+      <Field {...props.field}/>
     );
   };
 

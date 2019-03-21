@@ -12,37 +12,72 @@ class BiomPreset {
 
     const data = BiomPreset.getRandomBiomPreset(season, scale);
 
-    return {
+    return Object.assign({
       scale,
       frontalCoords: {
         x: frontalCoords.x,
         y: frontalCoords.y
-      },
-      data
-    };
+      }
+    }, data);
   }
 
+  static getRandomBiomPreset = (season = 'summer', scale) => {
+    const colorSchemes = BiomPreset.getColorPresetsBy(season);
+
+    const field = BiomPreset.getRandomFieldPreset(colorSchemes, scale);
+
+    const fieldPlants = BiomPreset.getRandomFieldPlantsPreset(colorSchemes, field.fieldId);
+
+    // const borderLineX = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
+    //
+    // const borderLineY = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
+
+    return {
+      field,
+      fieldPlants
+      // borderLineX,
+      // borderLineY
+    };
+  };
+
+  static getRandomFieldPlantsPreset = ( colorSchemes, fieldId ) => {
+    const plantsName = BiomPreset.getRandomPlantName(colorSchemes, fieldId);
+
+    const fieldPlantColor = BiomPreset.getRandomFieldPlantColor(colorSchemes, fieldId, plantsName);
+
+    return {
+      plantsName,
+      fieldPlantColor
+    }
+  };
+
+
+  static getRandomFieldId = (colorSchemes) => {
+    return Random.getRandomPropertyName(colorSchemes.fields);
+  };
+
+  static getRandomPlantName = (colorSchemes, fieldId) => {
+    return Random.getRandomPropertyName(colorSchemes.fields[fieldId]);
+  };
+
+  static getRandomFieldPlantColor = (colorSchemes, fieldId, plantName) => {
+    const colors = colorSchemes.fields[fieldId][plantName];
+    return Random.getRandomArrayItem(colors);
+  };
+
   static getRandomFieldPreset = (colorSchemes, scale) => {
-    const fieldId = Random.getRandomPropertyName(colorSchemes.fields);
-
-    const name = Random.getRandomPropertyName(colorSchemes.fields[fieldId]);
-
-    const colors = colorSchemes.fields[fieldId][name];
-
-    const color = Random.getRandomArrayItem(colors);
+    const fieldId = BiomPreset.getRandomFieldId(colorSchemes);
 
     const getShapes = Shapes.field(scale);
 
     return {
       fieldId,
-      color,
+      color: fieldId,
       getShapes
     }
   };
 
-  static getRandomPlantPreset = ({ colorSchemes, fieldId, scale } ) => {
 
-  };
 
   static getRandomBorderLinePreset = (colorSchemes, scale) => {
     const name = Random.getRandomPropertyName(colorSchemes.plantLines);
@@ -56,22 +91,6 @@ class BiomPreset {
       lightColor,
       darkColor
     }
-  };
-
-  static getRandomBiomPreset = (season = 'summer', scale) => {
-    const colorSchemes = BiomPreset.getColorPresetsBy(season);
-
-    const field = BiomPreset.getRandomFieldPreset(colorSchemes, scale);
-
-    const borderLineX = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
-
-    const borderLineY = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
-
-    return {
-      field,
-      borderLineX,
-      borderLineY
-    };
   };
 
   static getColorPresetsBy = (season) => {

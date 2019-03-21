@@ -17,7 +17,6 @@ class Field extends Component {
   };
 
   componentDidMount() {
-    console.log('this.props;', this.props);
     const {getShapes} = this.props;
     getShapes.then((result) => {
       this.setState({
