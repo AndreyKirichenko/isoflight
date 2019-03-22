@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 
 const defaultObserverData = {
-  scale: 200,
+  scale: 240,
   x: 0,
   y: 0,
   speedX: 1,
   speedY: 1,
-  radius: 3,
+  radius: 1,
 };
 
 const withObserver = (View) => {
-  return class extends Component{
+  return class extends Component {
     state = {
       observer: {
         ...defaultObserverData,

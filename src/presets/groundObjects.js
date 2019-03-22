@@ -2,129 +2,136 @@ const groundObjects = {
   plantLines: {
     poplars: {
       quantity: 12,
-      lightColor: {
+
+      light: {
         minHeight: 15,
         maxHeight: 30,
         pointsBetween: 40,
-        fluctX: 0.33,
-        fluctY: 1,
-        fluctCX: 0.2,
+        flX: 0.33,
+        flY: 1,
+        flCX: 0.2,
       },
 
-      darkColor: {
+      shadow: {
         minHeight: 5,
         maxHeight: 20,
         pointsBetween: 60,
-        fluctX: 0.33,
-        fluctY: 1,
-        fluctCX: 1,
+        flX: 0.33,
+        flY: 1,
+        flCX: 1,
       }
     },
 
     willows: {
       quantity: 12,
-      lightColor: {
+
+      light: {
         minHeight: 10,
         maxHeight: 20,
         pointsBetween: 30,
-        fluctX: 0.5,
-        fluctY: 1,
-        fluctCX: 1,
+        flX: 0.5,
+        flY: 1,
+        flCX: 1,
       },
 
-      darkColor: {
+      shadow: {
         minHeight: 4,
         maxHeight: 15,
         pointsBetween: 60,
-        fluctX: 0.25,
-        fluctY: 1,
-        fluctCX: 1,
+        flX: 0.25,
+        flY: 1,
+        flCX: 1,
       }
     },
 
     gardenTrees: {
       quantity: 16,
-      lightColor: {
+
+      light: {
         minHeight: 4,
         maxHeight: 12,
         pointsBetween: 30,
-        fluctX: 0.25,
-        fluctY: 1,
-        fluctCX: 0.25,
+        flX: 0.25,
+        flY: 1,
+        flCX: 0.25,
       },
 
-      darkColor: {
+      shadow: {
         minHeight: 2,
         maxHeight: 8,
         pointsBetween: 60,
-        fluctX: 0.25,
-        fluctY: 1,
-        fluctCX: 0.25,
+        flX: 0.25,
+        flY: 1,
+        flCX: 0.25,
       }
     },
 
     grapes: {
       quantity: 20,
-      lightColor: {
+
+      light: {
         minHeight: 4,
         maxHeight: 10,
         pointsBetween: 30,
-        fluctX: 0.5,
-        fluctY: 0.75,
-        fluctCX: 0.5,
+        flX: 0.5,
+        flY: 0.75,
+        flCX: 0.5,
       },
 
-      darkColor: {
+      shadow: {
         minHeight: 2,
         maxHeight: 4,
         pointsBetween: 60,
-        fluctX: 0.25,
-        fluctY: 1,
-        fluctCX: 0.5,
+        flX: 0.25,
+        flY: 1,
+        flCX: 0.5,
       }
     },
 
     bed: {
       quantity: 32,
-      lightColor: {
+
+      light: {
         minHeight: 1,
         maxHeight: 4,
         pointsBetween: 20,
-        fluctX: 0.5,
-        fluctY: 1,
-        fluctCX: 0.1,
+        flX: 0.5,
+        flY: 1,
+        flCX: 0.1,
       },
 
-      darkColor: {
+      shadow: {
         minHeight: 1,
         maxHeight: 2,
         pointsBetween: 40,
-        fluctX: 0.25,
-        fluctY: 1,
-        fluctCX: 0.1,
+        flX: 0.25,
+        flY: 1,
+        flCX: 0.1,
       }
     },
 
     furrow: {
       quantity: 60,
-      lightColor: {
+
+      light: {
         minHeight: 0,
         maxHeight: 1,
         pointsBetween: 20,
-        fluctX: 0.5,
-        fluctY: 1,
-        fluctCX: 0,
+        flX: 0.5,
+        flY: 1,
+        flCX: 0,
       },
     },
     grass: {
       quantity: 60,
-      lightColor: {
+
+      light: {
         minHeight: 0,
         maxHeight: 1,
         pointsBetween: 20,
-        fluctX: 0.5,
-        fluctY: 1,
-        fluctCX: 0,
+        flX: 0.5,
+        flY: 1,
+        flCX: 0,
       },
     }
   }

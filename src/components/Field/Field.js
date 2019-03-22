@@ -17,8 +17,9 @@ class Field extends Component {
   };
 
   componentDidMount() {
-    const {getShapes} = this.props;
-    getShapes.then((result) => {
+    const { getShape } = this.props;
+
+    getShape.then((result) => {
       this.setState({
         d: CoordStringify.getString(result)
       });
@@ -26,9 +27,11 @@ class Field extends Component {
   }
 
   render() {
+    const { color } = this.props;
+
     if(!this.state.d) return null;
     return (
-      <path d={this.state.d} fill='#000' />
+      <path d={this.state.d} fill={color} />
     );
   }
 }

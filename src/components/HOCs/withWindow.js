@@ -14,7 +14,7 @@ const withWindow = (View) => {
       });
     }
 
-    getWindow (){
+    getWindow () {
       return {
         height: window.innerHeight,
         width: window.innerWidth

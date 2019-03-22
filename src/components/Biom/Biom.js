@@ -3,22 +3,20 @@ import Field from '../Field/Field';
 // import PlantLine from '../PlantLine';
 // import FieldPlants from "../FieldPlants";
 
-
 const Biom = (props) => {
-
   const getField = () => {
-    // const getShapes = props.data.field.getShapes;
-    // return null;
-
     return (
       <Field {...props.field}/>
     );
   };
 
-  console.log(props);
+  const getTransform = () => {
+    const { x, y } = props.frontalCoords;
+    return `translate(${x},${y})`;
+  };
 
   return (
-    <g>
+    <g transform={getTransform()}>
       {getField()}
     </g>
   );

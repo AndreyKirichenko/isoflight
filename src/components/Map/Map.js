@@ -4,13 +4,6 @@ import compose from '../../helpers/compose';
 import Bioms from '../Bioms'
 
 class Map extends Component {
-  componentDidMount() {
-    // console.log('Map is mounted with props', this.props);
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    // console.log('Map is updated with props', this.props);
-  }
 
   render() {
     const { window: { width, height } } = this.props;
@@ -34,7 +27,7 @@ class Map extends Component {
 }
 
 export default compose(
-  withObserver,
   withWindow,
+  withObserver,
   withMapPresetter
 )(Map);

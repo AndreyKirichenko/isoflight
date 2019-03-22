@@ -13,14 +13,11 @@ const withMapPresetter = (View) => {
       this.updateBiomsData();
     }
 
-    shouldComponentUpdate(nextProps) {
-      if (nextProps.observer.x === this.props.observer.x ||
-          nextProps.observer.y === this.props.observer.y) {
-        return false;
+    componentDidUpdate(prevProps) {
+      if (prevProps.observer.x !== this.props.observer.x ||
+        prevProps.observer.y !== this.props.observer.y) {
+        this.updateBiomsData();
       }
-
-      this.updateBiomsData();
-      return true;
     }
 
     updateBiomsData() {
