@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withMapPresetter, withObserver, withWindow} from '../HOCs';
+import { withMapPresetter, withObserver, withEnvironment} from '../HOCs';
 import compose from '../../helpers/compose';
 import Bioms from '../Bioms'
 
@@ -31,7 +31,7 @@ class Map extends Component {
 }
 
 export default compose(
-  withWindow,
+  withEnvironment,
   withObserver,
   withMapPresetter
 )(Map);

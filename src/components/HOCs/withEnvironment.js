@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const withWindow = (View) => {
+const withEnvironment = (View) => {
   return class extends Component {
     state = {
       window: this.getWindow()
@@ -29,4 +29,4 @@ const withWindow = (View) => {
   }
 };
 
-export default withWindow;
+export default withEnvironment;

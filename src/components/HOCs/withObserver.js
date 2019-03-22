@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
 const defaultObserverData = {
-  scale: 240,
-  x: 0,
-  y: 0,
+  scale: 100,
+  x: 1,
+  y: 1,
   speedX: 1,
   speedY: 1,
   radius: 1,
@@ -42,7 +42,7 @@ const withObserver = (View) => {
     componentDidMount() {
       setTimeout(() => {
         this.update();
-      }, 2000);
+      }, 1000);
     }
 
     update = () => {

@@ -1,5 +1,5 @@
 import withMapPresetter from './withMapPresetter';
 import withObserver from './withObserver';
-import withWindow from './withWindow';
+import withEnvironment from './withEnvironment';
 
-export { withMapPresetter, withObserver, withWindow };
+export { withMapPresetter, withObserver, withEnvironment };
