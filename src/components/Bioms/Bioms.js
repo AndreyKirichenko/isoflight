@@ -26,12 +26,12 @@ class Bioms extends Component {
 
     let biomsToRender = [];
 
-    for(let x = 0; x <= x2; x++) {
+    for(let x = x1; x <= x2; x++) {
       if(!biomsToRender[x]) {
         biomsToRender[x] = [];
       }
 
-      for(let y = 0; y <= y2; y++) {
+      for(let y = y1; y <= y2; y++) {
         if (bioms[x][y]) {
           const key = `${x}-${y}`;
 

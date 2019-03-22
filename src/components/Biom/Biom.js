@@ -5,9 +5,10 @@ import Field from '../Field/Field';
 
 const Biom = (props) => {
   const getField = () => {
+    //props.isCurren
 
     return (
-      <Field {...props.field} isCurrent={props.isCurrent} />
+      <Field {...props.field} isCurrent={false} />
     );
   };
 

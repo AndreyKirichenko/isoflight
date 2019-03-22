@@ -28,20 +28,21 @@ class Shapes {
     ];
 
     for (let i = 1; i < pointsBetween + 1; i++) {
-      const currentflX = (Math.random() - 0.5) * flX;
-      const currentflY = (Math.random()) * flY;
-      const currentflCX = (Math.random() - 0.5) * flCX;
+      const flX = (Math.random() - 0.5) * flX;
+      const flY = (Math.random()) * flY;
+      const flCX = (Math.random() - 0.5) * flCX;
 
-      const x = averageX * i + currentflX * averageX;
+      const x = averageX * i + flX * averageX;
       const y = Isometry.getY(x) - minHeight;
 
       const prevPoint = pointsArr[pointsArr.length - 1];
-      const yDelta = yMaxDelta * currentflY;
-      const c1x = prevPoint.x + averageX * currentflCX;
+      const yDelta = yMaxDelta * flY;
+      const c1x = prevPoint.x + averageX * flCX;
       const c1y = prevPoint.y - yDelta;
 
-      const c2x = x + averageX * currentflCX;
+      const c2x = x + averageX * flCX;
       const c2y = y - yDelta;
+
 
       pointsArr.push(
         {
@@ -88,7 +89,7 @@ class Shapes {
     coords[1] = {
       type: 'L',
       x: scale,
-      y: Isometry.getY(scale)
+      y: Isometry.getY(scale) + 1
     };
 
     coords[2] = {
