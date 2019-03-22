@@ -6,8 +6,7 @@ import Shapes from './Shapes';
 
 
 class BiomPreset {
-  static create(x, y, scale, season = 'summer') {
-
+  constructor(x, y, scale, season = 'summer') {
     const frontalCoords =
       Isometry.toFrontalCoords(x * scale, y * scale);
 
@@ -30,14 +29,13 @@ class BiomPreset {
     const fieldPlants = BiomPreset.getRandomFieldPlantsPreset(colorSchemes, field.id, scale);
 
     const borderLineX = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
-    //
-    // const borderLineY = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
+    const borderLineY = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
 
     return {
       field,
-      fieldPlants
-      // borderLineX,
-      // borderLineY
+      fieldPlants,
+      borderLineX,
+      borderLineY
     };
   };
 
@@ -116,7 +114,7 @@ class BiomPreset {
 
     const { light, shadow } = borderLine;
 
-    const getShapes = BiomPreset.getRandomFieldPlantLineShapes({ light, shadow, scale })
+    const getShapes = BiomPreset.getRandomFieldPlantLineShapes({ light, shadow, scale });
 
     return {
       name,

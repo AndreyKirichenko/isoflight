@@ -5,6 +5,10 @@ import Bioms from '../Bioms'
 
 class Map extends Component {
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // console.log('Map componentDidUpdate', this.props);
+  }
+
   render() {
     const { window: { width, height } } = this.props;
 

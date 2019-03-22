@@ -34,12 +34,12 @@ const withMapPresetter = (View) => {
 
           for(let y = y1; y <= y2; y++) {
             if(bioms[x][y]) break;
-            bioms[x][y] = BiomPreset.create(x, y, scale);
+            bioms[x][y] = new BiomPreset(x, y, scale);
           }
         }
 
         return {
-          bioms: flatten(bioms)
+          bioms
         };
       });
     }
