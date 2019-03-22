@@ -16,17 +16,6 @@ class Shapes {
       flCX,
   }) {
 
-    console.log('---');
-    console.log({
-      minHeight,
-      maxHeight,
-      pointsBetween,
-      scale,
-      flX,
-      flY,
-      flCX,
-    });
-
     const averageX = scale / pointsBetween;
     const yMaxDelta = maxHeight - minHeight;
 
@@ -53,16 +42,6 @@ class Shapes {
 
       const c2x = x + averageX * currentflCX;
       const c2y = y - yDelta;
-
-      console.log({
-        type: 'C',
-        x,
-        y,
-        c1x,
-        c1y,
-        c2x,
-        c2y
-      });
 
       pointsArr.push(
         {

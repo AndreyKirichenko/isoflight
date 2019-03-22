@@ -29,7 +29,7 @@ class BiomPreset {
 
     const fieldPlants = BiomPreset.getRandomFieldPlantsPreset(colorSchemes, field.id, scale);
 
-    // const borderLineX = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
+    const borderLineX = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
     //
     // const borderLineY = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
 
@@ -68,6 +68,10 @@ class BiomPreset {
     }
   };
 
+  static getAverage = (scale, quantity) => {
+    return scale / quantity;
+  };
+
   static getRandomFieldPlantsPreset = ( colorSchemes, fieldId, scale ) => {
     const name = BiomPreset.getRandomPlantName(colorSchemes, fieldId);
 
@@ -86,58 +90,63 @@ class BiomPreset {
   };
 
   static getRandomFieldPlantsShapes = (plantsName, scale) => {
-    const { quantity, light, shadow} = groundObjects.plantLines[plantsName];
+    const { quantity, light, shadow, reflected = false  } = groundObjects.plantLines[plantsName];
 
-    let result = [];
+    let shapePromises = [];
 
-    const reflected = false;
-
-    const average = scale / quantity;
+    const average = BiomPreset.getAverage(scale, quantity);
 
     let yReflected = reflected ? -1 : 1;
 
     for (let i = 1; i <= quantity; i++) {
       const transform = `translate(${-average * i * yReflected},${Isometry.getY(average * i)})`;
 
-      result.push(
-        new Promise((resolve) => {
-          let l = null;
-          let s = null;
-
-          console.log('---');
-
-          if(light) {
-            l = Shapes.plantLine(light);
-            // console.log('l', l);
-          }
-
-          if(shadow) {
-            s = Shapes.plantLine(shadow);
-            // console.log('s', s);
-          }
-
-          resolve({
-            // transform,
-            // light: l,
-            // shadow: s,
-          })
-        })
+      shapePromises.push(
+        BiomPreset.getRandomFieldPlantLineShapes({ light, shadow, transform, scale })
       );
     }
+
+    return Promise.all(shapePromises);
   };
 
-  static getRandomBorderLinePreset = (colorSchemes) => {
+  static getRandomBorderLinePreset = (colorSchemes, scale) => {
     const name = Random.getRandomPropertyName(colorSchemes.plantLines);
 
     const borderLine = {...colorSchemes.plantLines[name]};
 
     const { light, shadow } = borderLine;
 
+    const getShapes = BiomPreset.getRandomFieldPlantLineShapes({ light, shadow, scale })
+
     return {
       name,
       light,
-      shadow
+      shadow,
+      getShapes
     }
+  };
+
+  static getRandomFieldPlantLineShapes = ({ light, shadow, transform, scale }) => {
+    return new Promise((resolve) => {
+      let l = null;
+      let s = null;
+
+      if(light) {
+        light.scale = scale;
+        l = Shapes.plantLine(light);
+      }
+
+      if(shadow) {
+        shadow.scale = scale;
+        s = Shapes.plantLine(shadow);
+      }
+
+      resolve({
+        transform,
+        light: l,
+        shadow: s,
+      })
+    })
   };
 
   static getColorPresetsBy = (season) => {

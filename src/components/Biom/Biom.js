@@ -4,6 +4,7 @@ import Field from '../Field/Field';
 // import FieldPlants from "../FieldPlants";
 
 const Biom = (props) => {
+  console.log(props);
   const getField = () => {
     return (
       <Field {...props.field}/>
