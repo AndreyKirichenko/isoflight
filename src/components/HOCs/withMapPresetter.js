@@ -33,8 +33,9 @@ const withMapPresetter = (View) => {
           }
 
           for(let y = y1; y <= y2; y++) {
-            if(bioms[x][y]) break;
-            bioms[x][y] = new BiomPreset(x, y, scale);
+            if(!bioms[x][y]) {
+              bioms[x][y] = new BiomPreset(x, y, scale);
+            }
           }
         }
 

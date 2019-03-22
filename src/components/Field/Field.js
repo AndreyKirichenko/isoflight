@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
 import CoordStringify from '../../helpers/CoordStringify';
 
-// const Field = ({getShape}) => {
-//
-//   return (
-//     <path
-//
-//     </path>
-//   );
-// };
-
-
 class Field extends Component {
   state = {
     d: ''
@@ -27,7 +17,11 @@ class Field extends Component {
   }
 
   render() {
-    const { color } = this.props;
+    let { color, isCurrent } = this.props;
+
+    if(isCurrent) {
+      color = '#000';
+    }
 
     if(!this.state.d) return null;
     return (

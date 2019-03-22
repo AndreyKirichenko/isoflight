@@ -16,7 +16,8 @@ class Bioms extends Component {
     return false;
   }
 
-  getBioms = () => {
+
+  getBioms() {
     const { bioms, observer } = this.props;
 
     if(!bioms.length) return null;
@@ -25,15 +26,18 @@ class Bioms extends Component {
 
     let biomsToRender = [];
 
-    for(let x = x1; x <= x2; x++) {
+    for(let x = 0; x <= x2; x++) {
       if(!biomsToRender[x]) {
         biomsToRender[x] = [];
       }
 
-      for(let y = y1; y <= y2; y++) {
-        const key = `${x}-${y}`;
+      for(let y = 0; y <= y2; y++) {
         if (bioms[x][y]) {
-          biomsToRender.push(<Biom {...bioms[x][y]} key={key} />);
+          const key = `${x}-${y}`;
+
+          const isCurrent = bioms[x][y].coords.x === observer.x && bioms[x][y].coords.y === observer.y;
+
+          biomsToRender.push(<Biom {...bioms[x][y]} isCurrent={isCurrent} key={key} />);
         }
       }
     }

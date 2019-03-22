@@ -10,16 +10,17 @@ class Map extends Component {
   }
 
   render() {
-    const { window: { width, height } } = this.props;
+    let { window: { width, height }, observer: { onObserverClick } } = this.props;
 
     const viewBox = `0 0 ${width} ${height}`;
-
-    const transform = '';
+    //height / 2
+    const transform = `translate(${width / 2}, ${0})`;
 
     return (
       <svg xmlns="http://www.w3.org/2000/svg"
            width='100%'
            height='100%'
+           onClick={onObserverClick}
            viewBox={viewBox}>
 
         <g transform={transform}>

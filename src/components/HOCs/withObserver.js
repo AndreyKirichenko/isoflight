@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 
 const defaultObserverData = {
   scale: 100,
-  x: 1,
-  y: 1,
+  x: 2,
+  y: 2,
   speedX: 1,
-  speedY: 1,
-  radius: 1,
+  speedY: 0,
+  radius: 2,
 };
 
 const withObserver = (View) => {
@@ -21,11 +21,11 @@ const withObserver = (View) => {
     getRangesBy(observerData) {
       const { x, y, radius } = observerData;
 
-      const x1 = this._toValidArrayIndex(x - radius);
-      const x2 = this._toValidArrayIndex(x + radius);
+      const x1 = this.toValidArrayIndex(x - radius);
+      const x2 = this.toValidArrayIndex(x + radius);
 
-      const y1 = this._toValidArrayIndex(y - radius);
-      const y2 = this._toValidArrayIndex(y + radius);
+      const y1 = this.toValidArrayIndex(y - radius);
+      const y2 = this.toValidArrayIndex(y + radius);
 
       return {
         x1,
@@ -35,7 +35,7 @@ const withObserver = (View) => {
       }
     }
 
-    _toValidArrayIndex(num) {
+    toValidArrayIndex(num) {
       return num >= 0 ? num : 0;
     }
 
@@ -60,11 +60,16 @@ const withObserver = (View) => {
 
         return {
           observer: {
+            onObserverClick: this.onObserverClick,
             ...newObserverData,
             ...this.getRangesBy(newObserverData)
           }
         };
       });
+    };
+
+    onObserverClick = () => {
+      this.update();
     };
 
     render() {

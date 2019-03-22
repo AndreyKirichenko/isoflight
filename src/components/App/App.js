@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="app">
         <ErrorBoundary>
-          <Spinner></Spinner>
+          {/*<Spinner></Spinner>*/}
           <Map></Map>
         </ErrorBoundary>
       </div>

@@ -5,19 +5,26 @@ import Field from '../Field/Field';
 
 const Biom = (props) => {
   const getField = () => {
+
     return (
-      <Field {...props.field}/>
+      <Field {...props.field} isCurrent={props.isCurrent} />
     );
   };
 
   const getTransform = () => {
     const { x, y } = props.frontalCoords;
+
     return `translate(${x},${y})`;
+  };
+
+  const getFieldPlants = () => {
+    return null;
   };
 
   return (
     <g transform={getTransform()}>
-      {getField()}
+      { getField() }
+      { getFieldPlants() }
     </g>
   );
 };

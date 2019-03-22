@@ -14,6 +14,10 @@ class BiomPreset {
 
     return Object.assign({
       scale,
+      coords: {
+        x,
+        y
+      },
       frontalCoords: {
         x: frontalCoords.x,
         y: frontalCoords.y
