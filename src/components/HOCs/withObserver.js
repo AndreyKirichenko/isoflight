@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 
 const defaultObserverData = {
   step: 0,
-  scale: 100,
-  x: 2,
-  y: 2,
+  scale: 200,
+  x: 3,
+  y: 3,
   speedX: 1,
-  speedY: 0,
+  speedY: 1,
   radius: 4,
 };
 
@@ -41,15 +41,15 @@ const withObserver = (View) => {
     }
 
     componentDidMount() {
-      this.update();
-
-      setInterval(() => {
+      setTimeout(() => {
         this.update();
-      }, 10000);
+        setInterval(() => {
+          this.update();
+        }, 10000);
+      }, 1);
     }
 
     update = () => {
-      console.log('update');
       this.setState((prevState) => {
         const { step, x, y, speedX, speedY, radius, scale } = prevState.observer;
 

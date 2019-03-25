@@ -5,8 +5,6 @@ import Field from '../Field/Field';
 
 const Biom = (props) => {
   const getField = () => {
-    //props.isCurren
-
     return (
       <Field {...props.field} isCurrent={false} />
     );
@@ -19,6 +17,7 @@ const Biom = (props) => {
   };
 
   const getFieldPlants = () => {
+    console.log(props);
     return null;
   };
 

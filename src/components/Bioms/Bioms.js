@@ -34,10 +34,7 @@ class Bioms extends Component {
       for(let y = y1; y <= y2; y++) {
         if (bioms[x][y]) {
           const key = `${x}-${y}`;
-
-          const isCurrent = bioms[x][y].coords.x === observer.x && bioms[x][y].coords.y === observer.y;
-
-          biomsToRender.push(<Biom {...bioms[x][y]} isCurrent={isCurrent} key={key} />);
+          biomsToRender.push(<Biom {...bioms[x][y]} key={key} />);
         }
       }
     }

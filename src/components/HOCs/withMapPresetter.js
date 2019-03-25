@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import BiomPreset from '../../helpers/BiomPreset';
-import flatten from '../../helpers/flatten';
 
 const withMapPresetter = (View) => {
   return class extends Component {

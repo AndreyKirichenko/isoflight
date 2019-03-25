@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Map from '../Map';
 import ErrorBoundary from "../ErrorBoundary";
-import Spinner from "../Spinner";
 
 class App extends Component {
   render() {
