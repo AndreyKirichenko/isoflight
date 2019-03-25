@@ -37,7 +37,7 @@ const Map = (props) => {
 
       <g transform={getCommonTranslate()}>
         <g className='map__wrapper' transform={getAnimationTranslate()}>
-          <Bioms {...this.props} />
+          <Bioms {...props} />
         </g>
       </g>
     </svg>
