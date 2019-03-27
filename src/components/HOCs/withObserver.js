@@ -1,21 +1,18 @@
 import React, {Component} from 'react';
 
-const defaultObserverData = {
-  step: 0,
-  scale: 200,
-  x: 3,
-  y: 3,
-  speedX: 1,
-  speedY: 1,
-  radius: 4,
-};
-
 const withObserver = (View) => {
   return class extends Component {
     state = {
       observer: {
-        ...defaultObserverData,
-        ...this.getRangesBy(defaultObserverData)
+        step: 0,
+        scale: 300,
+        x: 3,
+        y: 3,
+        speedX: 1,
+        speedY: 0,
+        radius: 5,
+        ranges: null,
+        timePerBiom: 10000
       }
     };
 
@@ -43,38 +40,36 @@ const withObserver = (View) => {
     componentDidMount() {
       setTimeout(() => {
         this.update();
+
         setInterval(() => {
+
           this.update();
-        }, 10000);
+
+        }, this.state.observer.timePerBiom);
       }, 1);
     }
 
     update = () => {
       this.setState((prevState) => {
-        const { step, x, y, speedX, speedY, radius, scale } = prevState.observer;
+        const { step, x, y, speedX, speedY } = prevState.observer;
 
         const newObserverData = {
           step: step + 1,
           x: x + speedX,
           y: y + speedY,
-          speedX,
-          speedY,
-          scale,
-          radius
         };
+
+        const observer = {
+          ...prevState.observer,
+          ...newObserverData
+        };
+
+        observer.ranges = this.getRangesBy(observer);
 
         return {
-          observer: {
-            onObserverClick: this.onObserverClick,
-            ...newObserverData,
-            ...this.getRangesBy(newObserverData)
-          }
+          observer
         };
       });
-    };
-
-    onObserverClick = () => {
-      this.update();
     };
 
     render() {

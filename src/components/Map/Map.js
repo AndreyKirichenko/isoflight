@@ -1,48 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withMapPresetter, withObserver, withEnvironment} from '../HOCs';
 import compose from '../../helpers/compose';
 import Bioms from '../Bioms'
-import Isometry from '../../helpers/Isometry';
-import './map.css';
+// import Isometry from '../../helpers/Isometry';
 
-const Map = (props) => {
-  const { window: { width, height }, observer: { x, y, scale, onObserverClick } } = props;
 
-  const getCommonTranslate = () => {
+class Map extends Component {
+  static getCommonTranslate (width, height) {
     const fromX = width / 2;
     const fromY = height / 2;
 
     return `translate(${fromX}, ${fromY})`;
   };
 
-  const getAnimationTranslate = () => {
-    const endFrontalCoords = Isometry.toFrontalCoords(x * scale, y * scale);
+  getAnimateTransform() {
+    // hardcoded attribute 'to'
 
-    const toX = - endFrontalCoords.x;
-    const toY = -endFrontalCoords.y;
-
-    return `translate(${toX}, ${toY})`;
+    return (
+      <animateTransform attributeName="transform"
+                        type="translate"
+                        from="0 0"
+                        to="-108000, -62353"
+                        dur="3600s"
+                        repeatCount="1"/>
+    );
   };
 
-  const getViewBox = () => {
+  static getViewBox(width, height) {
     return `0 0 ${width} ${height}`;
   };
 
-  return (
-    <svg xmlns='http://www.w3.org/2000/svg'
-         width='100%'
-         height='100%'
-         onClick={onObserverClick}
-         viewBox={getViewBox()}>
+  render() {
+    const { window: { width, height } } = this.props;
 
-      <g transform={getCommonTranslate()}>
-        <g className='map__wrapper' transform={getAnimationTranslate()}>
-          <Bioms {...props} />
+    return (
+      <svg xmlns='http://www.w3.org/2000/svg'
+           width='100%'
+           height='100%'
+           viewBox={Map.getViewBox(width, height)}>
+
+        <g transform={Map.getCommonTranslate(width, height)}>
+          <g className='map__wrapper' >
+            {this.getAnimateTransform()}
+            <Bioms {...this.props} />
+          </g>
         </g>
-      </g>
-    </svg>
-  );
-};
+      </svg>
+    );
+  }
+}
 
 export default compose(
   withEnvironment,

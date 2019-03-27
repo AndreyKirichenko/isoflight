@@ -17,7 +17,6 @@ const Biom = (props) => {
   };
 
   const getFieldPlants = () => {
-    console.log(props);
     return null;
   };
 

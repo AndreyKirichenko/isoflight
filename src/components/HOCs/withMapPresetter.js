@@ -13,27 +13,34 @@ const withMapPresetter = (View) => {
     }
 
     componentDidUpdate(prevProps) {
-      if (prevProps.observer.x !== this.props.observer.x ||
-        prevProps.observer.y !== this.props.observer.y) {
+      if (this.isObserverCoordsChanged(prevProps)) {
         this.updateBiomsData();
       }
     }
 
+    isObserverCoordsChanged(prevProps) {
+      return prevProps.observer.x !== this.props.observer.x || prevProps.observer.y !== this.props.observer.y
+    }
+
+
     updateBiomsData() {
       this.setState((state, props) => {
-        const { x1, x2, y1, y2, scale } = props.observer;
 
         let bioms = [...state.bioms];
 
-        for(let x = x1; x <= x2; x++) {
+        if (props.observer.ranges) {
+          const { ranges: { x1, x2, y1, y2 }, scale } = props.observer;
 
-          if(!bioms[x]) {
-            bioms[x] = [];
-          }
+          for(let x = x1; x <= x2; x++) {
 
-          for(let y = y1; y <= y2; y++) {
-            if(!bioms[x][y]) {
-              bioms[x][y] = new BiomPreset(x, y, scale);
+            if(!bioms[x]) {
+              bioms[x] = [];
+            }
+
+            for(let y = y1; y <= y2; y++) {
+              if(!bioms[x][y]) {
+                bioms[x][y] = new BiomPreset(x, y, scale);
+              }
             }
           }
         }

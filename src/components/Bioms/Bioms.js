@@ -4,13 +4,17 @@ import Biom from '../Biom';
 
 class Bioms extends Component {
   shouldComponentUpdate(nextProps, nextState, nextContext) {
+
     if(!nextProps.bioms.length) return false;
 
+    const currentRanges = this.props.observer.ranges;
+    const nextRanges = nextProps.observer.ranges;
+
     if(
-      this.props.observer.x1 === nextProps.observer.x1 &&
-      this.props.observer.x2 === nextProps.observer.x2 &&
-      this.props.observer.y1 === nextProps.observer.y1 &&
-      this.props.observer.y2 === nextProps.observer.y2
+      currentRanges.x1 === nextRanges.x1 &&
+      currentRanges.x2 === nextRanges.x2 &&
+      currentRanges.y1 === nextRanges.y1 &&
+      currentRanges.y2 === nextRanges.y2
     ) return true;
 
     return false;
@@ -22,7 +26,7 @@ class Bioms extends Component {
 
     if(!bioms.length) return null;
 
-    const { x1, x2, y1, y2 } = observer;
+    const { x1, x2, y1, y2 } = observer.ranges;
 
     let biomsToRender = [];
 
