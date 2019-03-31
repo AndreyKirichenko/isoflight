@@ -1,37 +1,29 @@
 import React from 'react';
 import PlantLine from '../PlantLine';
-import Isometry from '../../services/Isometry';
 
-const FieldPlants = ({ sideLength, preset, reflected }) => {
+const FieldPlants = (props) => {
+  const { lightColor, shadowColor, shapePromises, reflected } = props;
 
   const allPlants = () => {
-    let result = [];
-    const { quantity } = preset;
+    return shapePromises.map((shapePromise, key) => {
 
-    const average = sideLength / quantity;
+        const plantLineProps = {
+          shapePromise,
+          lightColor,
+          shadowColor
+        };
 
-    let yReflected = reflected ? -1 : 1;
-
-    for (let i = 1; i <= quantity; i++) {
-      const transform =
-        `translate(${-average * i * yReflected},${Isometry.getY(average * i)})`;
-
-      result.push(
-        <g key={i} transform={transform}>
-          <PlantLine sideLength={sideLength}
-                     preset={preset}
-                     reflected={reflected}
-          />
-        </g>
-      );
-    }
-
-    return result;
+        return (
+          <PlantLine {...plantLineProps} key={key} />
+        );
+    });
   };
 
+  const transform = reflected ? 'scale(-1,1)': '';
+
   return (
-    <g>
-      {allPlants()}
+    <g transform={transform}>
+      {  allPlants() }
     </g>
   );
 };

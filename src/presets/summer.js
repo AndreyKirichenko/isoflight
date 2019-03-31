@@ -1,31 +1,31 @@
 export default {
   plantLines: {
     poplars: {
-      light: {
+      lightShape: {
         fill: '#008b68'
       },
 
-      shadow: {
+      shadowShape: {
         fill: '#37765b',
       }
     },
 
     willows: {
-      light: {
+      lightShape: {
         fill: '#008b68'
       },
 
-      shadow: {
+      shadowShape: {
         fill: '#37765b'
       }
     },
 
     gardenTrees: {
-      light: {
+      lightShape: {
         fill: '#008b68'
       },
 
-      shadow: {
+      shadowShape: {
         fill: '#37765b'
       }
     }

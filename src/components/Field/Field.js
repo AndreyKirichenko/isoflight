@@ -7,9 +7,9 @@ class Field extends Component {
   };
 
   componentDidMount() {
-    const { getShape } = this.props;
+    const { shapePromise } = this.props;
 
-    getShape.then((result) => {
+    shapePromise.then((result) => {
       this.setState({
         d: CoordStringify.getString(result)
       });

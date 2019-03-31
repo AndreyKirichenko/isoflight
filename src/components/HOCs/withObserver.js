@@ -10,7 +10,7 @@ const withObserver = (View) => {
         y: 3,
         speedX: 1,
         speedY: 0,
-        radius: 5,
+        radius: 3,
         ranges: null,
         timePerBiom: 10000
       }

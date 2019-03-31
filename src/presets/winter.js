@@ -1,31 +1,31 @@
 export default {
   plantLines: {
     poplars: {
-      light: {
+      lightShape: {
         fill: '#00678b'
       },
 
-      shadow: {
+      shadowShape: {
         fill: '#4c4476'
       }
     },
 
     willows: {
-      light: {
+      lightShape: {
         fill: '#00678b'
       },
 
-      shadow: {
+      shadowShape: {
         fill: '#4c4476'
       }
     },
 
     gardenTrees: {
-      light: {
+      lightShape: {
         fill: '#00678b'
       },
 
-      shadow: {
+      shadowShape: {
         fill: '#4c4476'
       }
     }
@@ -34,56 +34,56 @@ export default {
   fields: {
     '#777A7E': {
       grass: [
-        '#998675',
-        '#778675'
+        '#798899',
+        '#737086'
       ],
       furrow: [
-        '#998675',
-        '#778675'
+        '#7f8c99',
+        '#797686'
       ],
       bed: [
-        '#998675',
-        '#778675'
+        '#7e8999',
+        '#707886'
       ]
     },
 
     '#39A487': {
       grapes: [
-        '#39B54A'
+        '#5988b5'
       ]
     },
 
     '#999569': {
       grass: [
-        '#AA9775',
-        '#77737E'
+        '#7b90aa',
+        '#77737e'
       ],
       furrow: [
-        '#998675',
-        '#778675'
+        '#6c7d99',
+        '#5e7486'
       ],
       bed: [
-        '#998675',
-        '#778675'
+        '#718199',
+        '#5a7586'
       ]
 
     },
 
     '#8CC63F': {
       grapes: [
-        '#39B54A'
+        '#899ab5'
       ],
       gardenTrees: [
-        '#39B54A'
+        '#7b84b5'
       ]
     },
 
     '#8CA499': {
       grapes: [
-        '#39B56E'
+        '#7392b5'
       ],
       gardenTrees: [
-        '#008b68'
+        '#20658b'
       ]
     }
   }

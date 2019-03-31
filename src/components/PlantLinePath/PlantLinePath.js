@@ -1,11 +1,10 @@
 import React from 'react';
-import CoordStringify from '../../services/CoordStringify';
-import Shapes from '../../services/Shapes';
+import CoordStringify from '../../helpers/CoordStringify';
 
 const PlantLinePath = (props) => {
-  const { fill } = props;
+  const { fill, coords } = props;
 
-  const d = CoordStringify.getString(Shapes.plantLine(props));
+  const d = CoordStringify.getString(coords);
 
   return (
     <path d={d}

@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { withMapPresetter, withObserver, withEnvironment} from '../HOCs';
 import compose from '../../helpers/compose';
 import Bioms from '../Bioms'
-// import Isometry from '../../helpers/Isometry';
-
 
 class Map extends Component {
   static getCommonTranslate (width, height) {
     const fromX = width / 2;
-    const fromY = height / 2;
+    const fromY = -height;
 
     return `translate(${fromX}, ${fromY})`;
   };

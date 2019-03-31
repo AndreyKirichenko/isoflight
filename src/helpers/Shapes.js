@@ -28,20 +28,21 @@ class Shapes {
     ];
 
     for (let i = 1; i < pointsBetween + 1; i++) {
-      const flX = (Math.random() - 0.5) * flX;
-      const flY = (Math.random()) * flY;
-      const flCX = (Math.random() - 0.5) * flCX;
+      const curFlX = (Math.random() - 0.5) * flX;
+      const curFlY = (Math.random()) * flY;
+      const curFlCX = (Math.random() - 0.5) * flCX;
 
-      const x = averageX * i + flX * averageX;
+      const x = averageX * i + curFlX * averageX;
       const y = Isometry.getY(x) - minHeight;
 
       const prevPoint = pointsArr[pointsArr.length - 1];
-      const yDelta = yMaxDelta * flY;
-      const c1x = prevPoint.x + averageX * flCX;
-      const c1y = prevPoint.y - yDelta;
+      const yDelta = yMaxDelta * curFlY;
 
-      const c2x = x + averageX * flCX;
-      const c2y = y - yDelta;
+      const c1x = Math.ceil(prevPoint.x + averageX * curFlCX);
+      const c1y = Math.ceil(prevPoint.y - yDelta);
+
+      const c2x = Math.ceil(x + averageX * curFlCX);
+      const c2y = Math.ceil(y - yDelta);
 
 
       pointsArr.push(
@@ -88,20 +89,20 @@ class Shapes {
 
     coords[1] = {
       type: 'L',
-      x: scale,
-      y: Isometry.getY(scale) + 1
+      x: Math.ceil(scale),
+      y: Math.ceil(Isometry.getY(scale))
     };
 
     coords[2] = {
       type: 'L',
       x: 0,
-      y: coords[1].y * 2
+      y: Math.ceil(coords[1].y * 2)
     };
 
     coords[3] = {
       type: 'L',
-      x: -coords[1].x,
-      y: coords[1].y
+      x: Math.ceil(-coords[1].x),
+      y: Math.ceil(coords[1].y)
     };
 
     coords[4] = {

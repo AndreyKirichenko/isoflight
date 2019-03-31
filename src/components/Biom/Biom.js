@@ -1,7 +1,7 @@
 import React from 'react';
 import Field from '../Field/Field';
-// import PlantLine from '../PlantLine';
-// import FieldPlants from "../FieldPlants";
+import PlantLine from '../PlantLine';
+import FieldPlants from "../FieldPlants";
 
 const Biom = (props) => {
   const getField = () => {
@@ -17,12 +17,26 @@ const Biom = (props) => {
   };
 
   const getFieldPlants = () => {
-    return null;
+    return (
+      <FieldPlants { ...props.fieldPlants } />
+    );
+  };
+
+
+  const getBorderLine = (borderLine) => {
+    const transform = borderLine.reflected ? 'scale(-1,1)': '';
+    return (
+      <g transform={transform}>
+        <PlantLine {...borderLine} />
+      </g>
+    );
   };
 
   return (
     <g transform={getTransform()}>
       { getField() }
+      { getBorderLine(props.borderLineX) }
+      { getBorderLine(props.borderLineY) }
       { getFieldPlants() }
     </g>
   );

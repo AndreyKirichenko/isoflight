@@ -1,42 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PlantLinePath from '../PlantLinePath';
 
-const PlantLine = ({ sideLength, preset, reflected }) => {
+class PlantLine extends Component {
 
-  let transform = reflected ? 'scale(-1,1)' : '';
-
-  const lightPart = () => {
-
-    if(!preset.lightPart) {
-      return null;
-    }
-    return getPart(preset.lightPart);
+  state = {
+    data: null
   };
 
-  const darkPart = () => {
-    if(!preset.darkPart) {
+  componentDidMount() {
+    this.props.shapePromise.then((data) => {
+
+      this.setState({
+        data
+      })
+    })
+  }
+
+  static getPart(coords, fill, transform='') {
+    return (
+      <g transform={transform}>
+        <PlantLinePath coords={coords} fill={fill} />
+      </g>
+    );
+  }
+
+  lightPart() {
+    const { lightShape, transform } = this.state.data;
+    const { lightColor } = this.props;
+
+    if(!lightShape) {
       return null;
     }
 
-    return getPart(preset.darkPart);
+    return PlantLine.getPart(lightShape, lightColor, transform);
   };
 
-  const getPart = (partPreset) => {
+  darkPart() {
+    const { shadowShape, transform } = this.state.data;
+    const { shadowColor } = this.props;
+    if(!shadowShape) {
+      return null;
+    }
+
+    return PlantLine.getPart(shadowShape, shadowColor, transform);
+  };
+
+
+  render() {
+    if(!this.state.data) return null;
+
+    const reflected = this.state.data.reflected ? 'scale(-1,1)' : '';
 
     return (
-      <PlantLinePath {...partPreset}
-                     sideLength={sideLength}
-      />
+      <g transform={reflected}>
+        { this.lightPart() }
+        { this.darkPart() }
+      </g>
     );
-  };
-
-  return (
-    <g transform={transform}>
-      {lightPart()}
-
-      {darkPart()}
-    </g>
-  );
-};
+  }
+}
 
 export default PlantLine;

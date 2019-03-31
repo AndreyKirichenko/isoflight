@@ -22,7 +22,6 @@ const withMapPresetter = (View) => {
       return prevProps.observer.x !== this.props.observer.x || prevProps.observer.y !== this.props.observer.y
     }
 
-
     updateBiomsData() {
       this.setState((state, props) => {
 

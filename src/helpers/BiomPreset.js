@@ -33,7 +33,7 @@ class BiomPreset {
     const fieldPlants = BiomPreset.getRandomFieldPlantsPreset(colorSchemes, field.id, scale);
 
     const borderLineX = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
-    const borderLineY = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale);
+    const borderLineY = BiomPreset.getRandomBorderLinePreset(colorSchemes, scale, true);
 
     return {
       field,
@@ -56,17 +56,21 @@ class BiomPreset {
     return Random.getRandomArrayItem(colors);
   };
 
+  static getBorderLineColors = (colorSchemes, plantName) => {
+    return colorSchemes.plantLines[plantName];
+  };
+
   static getRandomFieldPreset = (colorSchemes, scale) => {
     const id = BiomPreset.getRandomFieldId(colorSchemes);
 
-    const getShape = new Promise((resolve) => {
+    const shapePromise = new Promise((resolve) => {
       resolve(Shapes.field(scale));
     });
 
     return {
       id,
       color: id,
-      getShape
+      shapePromise
     }
   };
 
@@ -77,76 +81,82 @@ class BiomPreset {
   static getRandomFieldPlantsPreset = ( colorSchemes, fieldId, scale ) => {
     const name = BiomPreset.getRandomPlantName(colorSchemes, fieldId);
 
-    const light = BiomPreset.getRandomFieldPlantColor(colorSchemes, fieldId, name);
+    const lightColor = BiomPreset.getRandomFieldPlantColor(colorSchemes, fieldId, name);
 
-    const shadow = Color(light).darken(0.5);
+    const shadowColor = Color(lightColor).darken(0.10).hex();
 
-    const getShapes = BiomPreset.getRandomFieldPlantsShapes(name, scale);
+    const shapePromises = BiomPreset.getRandomFieldPlantsShapes(name, scale);
+
+    const reflected = Random.getRandomBool();
 
     return {
       name,
-      light,
-      shadow,
-      getShapes
+      lightColor,
+      shadowColor,
+      shapePromises,
+      reflected
     }
   };
 
   static getRandomFieldPlantsShapes = (plantsName, scale) => {
-    const { quantity, light, shadow, reflected = false  } = groundObjects.plantLines[plantsName];
+    const { quantity, lightShape, shadowShape } = groundObjects.plantLines[plantsName];
 
     let shapePromises = [];
 
     const average = BiomPreset.getAverage(scale, quantity);
 
-    let yReflected = reflected ? -1 : 1;
-
     for (let i = 1; i <= quantity; i++) {
-      const transform = `translate(${-average * i * yReflected},${Isometry.getY(average * i)})`;
+      const transform = `translate(${-average * i},${Isometry.getY(average * i)})`;
 
       shapePromises.push(
-        BiomPreset.getRandomFieldPlantLineShapes({ light, shadow, transform, scale })
+        BiomPreset.getRandomFieldPlantLineShapes({ lightShape, shadowShape, transform, scale })
       );
     }
 
-    return Promise.all(shapePromises);
+    return shapePromises;
   };
 
-  static getRandomBorderLinePreset = (colorSchemes, scale) => {
+  static getRandomBorderLinePreset = (colorSchemes, scale, reflected=false) => {
     const name = Random.getRandomPropertyName(colorSchemes.plantLines);
 
-    const borderLine = {...colorSchemes.plantLines[name]};
+    const { lightShape, shadowShape } = groundObjects.plantLines[name];
 
-    const { light, shadow } = borderLine;
+    const colors = BiomPreset.getBorderLineColors(colorSchemes, name);
 
-    const getShapes = BiomPreset.getRandomFieldPlantLineShapes({ light, shadow, scale });
+    const lightColor = colors.lightShape.fill;
+
+    const shadowColor = colors.shadowShape.fill;
+
+    const shapePromise = BiomPreset.getRandomFieldPlantLineShapes({ lightShape, shadowShape, scale });
 
     return {
       name,
-      light,
-      shadow,
-      getShapes
+      lightColor,
+      shadowColor,
+      shapePromise,
+      reflected
     }
   };
 
-  static getRandomFieldPlantLineShapes = ({ light, shadow, transform, scale }) => {
+  static getRandomFieldPlantLineShapes = ({ lightShape, shadowShape, transform, scale }) => {
     return new Promise((resolve) => {
       let l = null;
       let s = null;
 
-      if(light) {
-        light.scale = scale;
-        l = Shapes.plantLine(light);
+      if(lightShape) {
+        lightShape.scale = scale;
+        l = Shapes.plantLine(lightShape);
       }
 
-      if(shadow) {
-        shadow.scale = scale;
-        s = Shapes.plantLine(shadow);
+      if(shadowShape) {
+        shadowShape.scale = scale;
+        s = Shapes.plantLine(shadowShape);
       }
 
       resolve({
         transform,
-        light: l,
-        shadow: s,
+        lightShape: l,
+        shadowShape: s,
       })
     })
   };
