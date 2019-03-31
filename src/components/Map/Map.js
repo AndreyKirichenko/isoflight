@@ -13,7 +13,6 @@ class Map extends Component {
 
   getAnimateTransform() {
     // hardcoded attribute 'to'
-
     return (
       <animateTransform attributeName="transform"
                         type="translate"
