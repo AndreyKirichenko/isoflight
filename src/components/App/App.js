@@ -5,12 +5,10 @@ import ErrorBoundary from "../ErrorBoundary";
 class App extends Component {
   render() {
     return (
-      <div className="app">
-        <ErrorBoundary>
-          {/*<Spinner></Spinner>*/}
-          <Map></Map>
-        </ErrorBoundary>
-      </div>
+      <ErrorBoundary>
+        {/*<Spinner></Spinner>*/}
+        <Map></Map>
+      </ErrorBoundary>
     );
   }
 }

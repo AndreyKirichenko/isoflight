@@ -1,13 +1,14 @@
 import React from 'react';
+import { Path } from 'react-konva';
 import CoordStringify from '../../helpers/CoordStringify';
 
 const PlantLinePath = (props) => {
   const { fill, coords } = props;
 
-  const d = CoordStringify.getString(coords);
+  const data = CoordStringify.getString(coords);
 
   return (
-    <path d={d}
+    <Path data={data}
           fill={fill}
     />
   );

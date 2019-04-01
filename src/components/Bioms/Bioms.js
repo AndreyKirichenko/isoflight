@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Biom from '../Biom';
-
 
 class Bioms extends Component {
   shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -19,7 +18,6 @@ class Bioms extends Component {
 
     return false;
   }
-
 
   getBioms() {
     const { bioms, observer } = this.props;
@@ -48,9 +46,9 @@ class Bioms extends Component {
 
   render() {
     return (
-      <g>
+      <Fragment>
         { this.getBioms() }
-      </g>
+      </Fragment>
     );
   }
 }

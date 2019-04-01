@@ -106,10 +106,13 @@ class BiomPreset {
     const average = BiomPreset.getAverage(scale, quantity);
 
     for (let i = 1; i <= quantity; i++) {
-      const transform = `translate(${-average * i},${Isometry.getY(average * i)})`;
-
+      const frontalCoords = {
+        x: -average * i,
+        y: Isometry.getY(average * i)
+      };
+      
       shapePromises.push(
-        BiomPreset.getRandomFieldPlantLineShapes({ lightShape, shadowShape, transform, scale })
+        BiomPreset.getRandomFieldPlantLineShapes({ lightShape, shadowShape, frontalCoords, scale })
       );
     }
 
@@ -138,7 +141,7 @@ class BiomPreset {
     }
   };
 
-  static getRandomFieldPlantLineShapes = ({ lightShape, shadowShape, transform, scale }) => {
+  static getRandomFieldPlantLineShapes = ({ lightShape, shadowShape, frontalCoords, scale }) => {
     return new Promise((resolve) => {
       let l = null;
       let s = null;
@@ -154,7 +157,7 @@ class BiomPreset {
       }
 
       resolve({
-        transform,
+        frontalCoords,
         lightShape: l,
         shadowShape: s,
       })

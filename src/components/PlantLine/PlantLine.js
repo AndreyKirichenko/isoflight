@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Group } from 'react-konva';
 import PlantLinePath from '../PlantLinePath';
 
 class PlantLine extends Component {
@@ -16,46 +17,46 @@ class PlantLine extends Component {
     })
   }
 
-  static getPart(coords, fill, transform='') {
+  static getPart(coords, fill, frontalCoords) {
     return (
-      <g transform={transform}>
+      <Group {...frontalCoords}>
         <PlantLinePath coords={coords} fill={fill} />
-      </g>
+      </Group>
     );
   }
 
   lightPart() {
-    const { lightShape, transform } = this.state.data;
+    const { lightShape, frontalCoords } = this.state.data;
     const { lightColor } = this.props;
 
     if(!lightShape) {
       return null;
     }
 
-    return PlantLine.getPart(lightShape, lightColor, transform);
+    return PlantLine.getPart(lightShape, lightColor, frontalCoords);
   };
 
   darkPart() {
-    const { shadowShape, transform } = this.state.data;
+    const { shadowShape, frontalCoords } = this.state.data;
     const { shadowColor } = this.props;
     if(!shadowShape) {
       return null;
     }
 
-    return PlantLine.getPart(shadowShape, shadowColor, transform);
+    return PlantLine.getPart(shadowShape, shadowColor, frontalCoords);
   };
 
 
   render() {
     if(!this.state.data) return null;
 
-    const reflected = this.state.data.reflected ? 'scale(-1,1)' : '';
+    const scaleX = this.state.data.reflected ? -1 : 1;
 
     return (
-      <g transform={reflected}>
+      <Group scaleX={scaleX}>
         { this.lightPart() }
         { this.darkPart() }
-      </g>
+      </Group>
     );
   }
 }
