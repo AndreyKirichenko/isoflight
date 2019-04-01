@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BiomPreset from '../../services/BiomPreset';
 
-const withMapPresetter = (View) => {
+const withBiomsPresetter = (View) => {
   return class extends Component {
 
     state = {
@@ -56,4 +56,4 @@ const withMapPresetter = (View) => {
   }
 };
 
-export default withMapPresetter;
+export default withBiomsPresetter;
