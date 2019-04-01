@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import Map from '../Map';
-import ErrorBoundary from "../ErrorBoundary";
+import Artboard from "../Artboard";
 
 class App extends Component {
   render() {
     return (
-      <ErrorBoundary>
+      <Artboard>
         {/*<Spinner></Spinner>*/}
         <Map></Map>
-      </ErrorBoundary>
+      </Artboard>
     );
   }
 }

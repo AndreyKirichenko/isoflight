@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 const withEnvironment = (View) => {
   return class extends Component {
     state = {
-      window: this.getWindow()
+      environment: this.getWindow()
     };
 
     componentDidMount() {
