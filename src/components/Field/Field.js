@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Path } from 'react-konva';
-import CoordStringify from '../../helpers/CoordStringify';
+import CoordStringify from '../../services/CoordStringify';
 
 class Field extends Component {
   state = {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BiomPreset from '../../helpers/BiomPreset';
+import BiomPreset from '../../services/BiomPreset';
 
 const withMapPresetter = (View) => {
   return class extends Component {

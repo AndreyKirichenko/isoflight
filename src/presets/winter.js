@@ -2,31 +2,31 @@ export default {
   plantLines: {
     poplars: {
       lightShape: {
-        fill: '#00678b'
+        fill: '#52728b'
       },
 
       shadowShape: {
-        fill: '#4c4476'
+        fill: '#636376'
       }
     },
 
     willows: {
       lightShape: {
-        fill: '#00678b'
+        fill: '#5b728b'
       },
 
       shadowShape: {
-        fill: '#4c4476'
+        fill: '#5a5676'
       }
     },
 
     gardenTrees: {
       lightShape: {
-        fill: '#00678b'
+        fill: '#576d8b'
       },
 
       shadowShape: {
-        fill: '#4c4476'
+        fill: '#606276'
       }
     }
   }
@@ -49,7 +49,7 @@ export default {
 
     '#39A487': {
       grapes: [
-        '#5988b5'
+        '#7990b5'
       ]
     },
 
@@ -80,10 +80,10 @@ export default {
 
     '#8CA499': {
       grapes: [
-        '#7392b5'
+        '#7e97b5'
       ],
       gardenTrees: [
-        '#20658b'
+        '#5e708b'
       ]
     }
   }

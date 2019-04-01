@@ -1,6 +1,6 @@
 import React from 'react';
 import { Path } from 'react-konva';
-import CoordStringify from '../../helpers/CoordStringify';
+import CoordStringify from '../../services/CoordStringify';
 
 const PlantLinePath = (props) => {
   const { fill, coords } = props;
