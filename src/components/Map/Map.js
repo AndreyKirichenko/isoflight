@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Group } from 'react-konva';
 import compose from '../../helpers/compose';
-import { withBiomsPresetter, withObserver } from '../HOCs';
+import { withBiomsPresetter, withBiomsObserver } from '../HOCs';
 import Bioms from '../Bioms'
 
 class Map extends Component {
@@ -16,6 +16,6 @@ class Map extends Component {
 }
 
 export default compose(
-  withObserver,
+  withBiomsObserver,
   withBiomsPresetter
 )(Map);

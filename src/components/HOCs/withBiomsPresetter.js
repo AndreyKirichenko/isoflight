@@ -19,7 +19,7 @@ const withBiomsPresetter = (View) => {
     }
 
     isObserverCoordsChanged(prevProps) {
-      return prevProps.observer.x !== this.props.observer.x || prevProps.observer.y !== this.props.observer.y
+      return prevProps.biomsObserver.x !== this.props.biomsObserver.x || prevProps.biomsObserver.y !== this.props.biomsObserver.y
     }
 
     updateBiomsData() {
@@ -27,8 +27,8 @@ const withBiomsPresetter = (View) => {
 
         let bioms = [...state.bioms];
 
-        if (props.observer.ranges) {
-          const { ranges: { x1, x2, y1, y2 }, scale } = props.observer;
+        if (props.biomsObserver.ranges) {
+          const { ranges: { x1, x2, y1, y2 }, scale } = props.biomsObserver;
 
           for(let x = x1; x <= x2; x++) {
 

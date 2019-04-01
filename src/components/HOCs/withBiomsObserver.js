@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-const withObserver = (View) => {
+const withBiomsObserver = (View) => {
   return class extends Component {
     state = {
-      observer: {
+      biomsObserver: {
         step: 0,
         scale: 250,
         x: 0,
@@ -16,8 +16,8 @@ const withObserver = (View) => {
       }
     };
 
-    getRangesBy(observerData) {
-      const { x, y, radius } = observerData;
+    getRangesBy(biomsObserverData) {
+      const { x, y, radius } = biomsObserverData;
 
       const x1 = this.toValidArrayIndex(x - radius);
       const x2 = this.toValidArrayIndex(x + radius);
@@ -45,13 +45,13 @@ const withObserver = (View) => {
 
           this.update();
 
-        }, this.state.observer.timePerBiom);
+        }, this.state.biomsObserver.timePerBiom);
       }, 1);
     }
 
     update = () => {
       this.setState((prevState) => {
-        const { step, x, y, speedX, speedY } = prevState.observer;
+        const { step, x, y, speedX, speedY } = prevState.biomsObserver;
 
         const newObserverData = {
           step: step + 1,
@@ -59,15 +59,15 @@ const withObserver = (View) => {
           y: y + speedY,
         };
 
-        const observer = {
-          ...prevState.observer,
+        const biomsObserver = {
+          ...prevState.biomsObserver,
           ...newObserverData
         };
 
-        observer.ranges = this.getRangesBy(observer);
+        biomsObserver.ranges = this.getRangesBy(biomsObserver);
 
         return {
-          observer
+          biomsObserver
         };
       });
     };
@@ -78,4 +78,4 @@ const withObserver = (View) => {
   };
 };
 
-export default withObserver;
+export default withBiomsObserver;

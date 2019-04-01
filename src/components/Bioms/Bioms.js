@@ -6,8 +6,8 @@ class Bioms extends Component {
 
     if(!nextProps.bioms.length) return false;
 
-    const currentRanges = this.props.observer.ranges;
-    const nextRanges = nextProps.observer.ranges;
+    const currentRanges = this.props.biomsObserver.ranges;
+    const nextRanges = nextProps.biomsObserver.ranges;
 
     if(
       currentRanges.x1 === nextRanges.x1 &&
@@ -20,11 +20,11 @@ class Bioms extends Component {
   }
 
   getBioms() {
-    const { bioms, observer } = this.props;
+    const { bioms, biomsObserver } = this.props;
 
     if(!bioms.length) return null;
 
-    const { x1, x2, y1, y2 } = observer.ranges;
+    const { x1, x2, y1, y2 } = biomsObserver.ranges;
 
     let biomsToRender = [];
 
