@@ -1,4 +1,5 @@
 import React from 'react';
+import { Group } from 'react-konva';
 import Field from '../Field/Field';
 import PlantLine from '../PlantLine';
 import FieldPlants from "../FieldPlants";
@@ -10,35 +11,28 @@ const Biom = (props) => {
     );
   };
 
-  const getTransform = () => {
-    const { x, y } = props.frontalCoords;
-
-    return `translate(${x},${y})`;
-  };
-
   const getFieldPlants = () => {
     return (
       <FieldPlants { ...props.fieldPlants } />
     );
   };
 
-
   const getBorderLine = (borderLine) => {
-    const transform = borderLine.reflected ? 'scale(-1,1)': '';
+    const scaleX = borderLine.reflected ? -1: 1;
     return (
-      <g transform={transform}>
+      <Group scaleX={scaleX}>
         <PlantLine {...borderLine} />
-      </g>
+      </Group>
     );
   };
 
   return (
-    <g transform={getTransform()}>
+    <Group {...props.frontalCoords}>
       { getField() }
       { getBorderLine(props.borderLineX) }
       { getBorderLine(props.borderLineY) }
       { getFieldPlants() }
-    </g>
+    </Group>
   );
 };
 

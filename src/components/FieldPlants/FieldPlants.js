@@ -1,4 +1,5 @@
 import React from 'react';
+import { Group } from 'react-konva';
 import PlantLine from '../PlantLine';
 
 const FieldPlants = (props) => {
@@ -19,12 +20,12 @@ const FieldPlants = (props) => {
     });
   };
 
-  const transform = reflected ? 'scale(-1,1)': '';
+  const scaleX = reflected ? -1: 1;
 
   return (
-    <g transform={transform}>
-      {  allPlants() }
-    </g>
+    <Group scaleX={scaleX} >
+      { allPlants() }
+    </Group>
   );
 };
 

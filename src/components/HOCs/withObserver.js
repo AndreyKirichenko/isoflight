@@ -5,12 +5,12 @@ const withObserver = (View) => {
     state = {
       observer: {
         step: 0,
-        scale: 300,
-        x: 3,
-        y: 3,
+        scale: 250,
+        x: 0,
+        y: 0,
         speedX: 1,
         speedY: 0,
-        radius: 3,
+        radius: 1,
         ranges: null,
         timePerBiom: 10000
       }
