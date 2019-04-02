@@ -13,7 +13,7 @@ const withPointOfView = (View) => {
         x: integerCenter,
         y: integerCenter,
         speedX: 1,
-        speedY: 0,
+        speedY: 1,
         maxSpeedX: 1,
         maxSpeedY: 1,
         timeDelta: 0,
@@ -26,39 +26,31 @@ const withPointOfView = (View) => {
     }
 
     tikTak() {
-      let time;
-
+      this.update();
       const tik = () => {
-        requestAnimationFrame(tik);
-        const now = new Date().getTime();
-        const timeDelta = now - (time || now);
+        this.update();
 
-        time = now;
-        this.update(timeDelta);
+        requestAnimationFrame(tik);
       };
 
       tik();
     }
 
-    update(timeDelta) {
+    update() {
       this.setState((prevState, prevProps) => {
         const step = prevState.pointOfView.step + 1;
 
         const speed = this.getCurrentSpeed(prevProps.environment, prevState.pointOfView);
 
-
         const x = prevState.pointOfView.x + speed.speedX;
         const y = prevState.pointOfView.y + speed.speedY;
-        const fps = Math.round(1000 / timeDelta);
 
         const pointOfView = {
           ...prevState.pointOfView,
           ...speed,
           step,
           x,
-          y,
-          timeDelta,
-          fps
+          y
         };
 
         return {
@@ -92,6 +84,7 @@ const withPointOfView = (View) => {
     }
 
     render() {
+      // console.log('render withPointOfView');
       return <View {...this.state} {...this.props} />
     }
   }

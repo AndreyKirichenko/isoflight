@@ -1,21 +1,24 @@
 import React, { Component, Fragment } from 'react';
 import Biom from '../Biom';
 
+let i = 0;
+
 class Bioms extends Component {
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return nextProps.bioms.length
-  //
-  //   if(!nextProps.bioms.length) return false;
-  //
-  //   const currentRanges = this.props.biomsObserver.ranges;
-  //   const nextRanges = nextProps.biomsObserver.ranges;
-  //
-  //   return !(
-  //     currentRanges.x1 === nextRanges.x1 &&
-  //     currentRanges.x2 === nextRanges.x2 &&
-  //     currentRanges.y1 === nextRanges.y1 &&
-  //     currentRanges.y2 === nextRanges.y2
-  //   );
+  shouldComponentUpdate(nextProps) {
+    if(!nextProps.bioms.length) return false;
+
+    const currentRanges = this.props.biomsObserver.ranges;
+    const nextRanges = nextProps.biomsObserver.ranges;
+
+    const res = i < 1;
+    i +=1;
+
+    return res || !(
+      currentRanges.x1 === nextRanges.x1 &&
+      currentRanges.x2 === nextRanges.x2 &&
+      currentRanges.y1 === nextRanges.y1 &&
+      currentRanges.y2 === nextRanges.y2
+    );
   }
 
   getBioms() {
@@ -44,6 +47,7 @@ class Bioms extends Component {
   };
 
   render() {
+    console.log('Bioms render');
     return (
       <Fragment>
         { this.getBioms() }

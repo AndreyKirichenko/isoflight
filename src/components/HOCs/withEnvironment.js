@@ -24,37 +24,34 @@ const withEnvironment = (View) => {
       });
     }
 
-    setWindowSizes = (e) => {
-      debounce(() => {
-        this.setState((prevState) => {
-          const environment = {
-            ...prevState.environment,
-            height: window.innerHeight,
-            width: window.innerWidth
-          };
+    setWindowSizes = debounce(() => {
+      this.setState((prevState) => {
+        const environment = {
+          ...prevState.environment,
+          height: window.innerHeight,
+          width: window.innerWidth
+        };
 
-          return {
-            environment
-          }
-        });
-      }, 1000, true)();
-    };
+        return {
+          environment
+        }
+      });
+    }, 200, true);
 
-    setMousePosition = (e) => {
-      debounce(() => {
-        this.setState((prevState) => {
-          const environment = {
-            ...prevState.environment,
-            mouseX: e.pageX,
-            mouseY: e.pageY
-          };
+    setMousePosition = debounce((e) => {
+      this.setState((prevState) => {
+        console.log(123);
+        const environment = {
+          ...prevState.environment,
+          mouseX: e.pageX,
+          mouseY: e.pageY
+        };
 
-          return {
-            environment
-          }
-        });
-      }, 100, true)();
-    };
+        return {
+          environment
+        }
+      });
+    }, 10, false);
 
     render () {
       return (

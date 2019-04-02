@@ -48,6 +48,7 @@ class PlantLine extends Component {
 
 
   render() {
+    // console.log('PlantLine render');
     if(!this.state.data) return null;
 
     const scaleX = this.state.data.reflected ? -1 : 1;
