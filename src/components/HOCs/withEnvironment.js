@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import debounce from '../../helpers/debounce';
+import throttle from '../../helpers/throttle';
 
 const withEnvironment = (View) => {
   return class extends Component {
@@ -38,9 +39,8 @@ const withEnvironment = (View) => {
       });
     }, 200, true);
 
-    setMousePosition = debounce((e) => {
+    setMousePosition = throttle((e) => {
       this.setState((prevState) => {
-        console.log(123);
         const environment = {
           ...prevState.environment,
           mouseX: e.pageX,
@@ -51,7 +51,7 @@ const withEnvironment = (View) => {
           environment
         }
       });
-    }, 10, false);
+    }, 200);
 
     render () {
       return (
