@@ -3,20 +3,19 @@ import Biom from '../Biom';
 
 class Bioms extends Component {
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-
-    if(!nextProps.bioms.length) return false;
-
-    const currentRanges = this.props.biomsObserver.ranges;
-    const nextRanges = nextProps.biomsObserver.ranges;
-
-    if(
-      currentRanges.x1 === nextRanges.x1 &&
-      currentRanges.x2 === nextRanges.x2 &&
-      currentRanges.y1 === nextRanges.y1 &&
-      currentRanges.y2 === nextRanges.y2
-    ) return true;
-
-    return false;
+    return nextProps.bioms.length
+  //
+  //   if(!nextProps.bioms.length) return false;
+  //
+  //   const currentRanges = this.props.biomsObserver.ranges;
+  //   const nextRanges = nextProps.biomsObserver.ranges;
+  //
+  //   return !(
+  //     currentRanges.x1 === nextRanges.x1 &&
+  //     currentRanges.x2 === nextRanges.x2 &&
+  //     currentRanges.y1 === nextRanges.y1 &&
+  //     currentRanges.y2 === nextRanges.y2
+  //   );
   }
 
   getBioms() {

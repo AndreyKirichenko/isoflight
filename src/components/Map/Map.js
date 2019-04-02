@@ -5,6 +5,11 @@ import { withBiomsPresetter, withBiomsObserver } from '../HOCs';
 import Bioms from '../Bioms'
 
 class Map extends Component {
+  shouldComponentUpdate(nextProps) {
+    return nextProps.pointOfView.x !== this.props.pointOfView.x ||
+           nextProps.pointOfView.y !== this.props.pointOfView.y;
+  }
+
   render() {
     return (
       <Group>

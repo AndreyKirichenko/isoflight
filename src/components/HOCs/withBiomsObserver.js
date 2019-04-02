@@ -8,14 +8,14 @@ const withBiomsObserver = (View) => {
         y: 0,
         speedX: 1,
         speedY: 0,
-        radius: 2,
+        radius: 1,
         ranges: null,
         timePerBiom: 10000
       }
     };
 
     shouldComponentUpdate(nextProps) {
-      return nextProps.pointOfView.step !== this.props.pointOfView.step
+      return nextProps.pointOfView.step !== this.props.pointOfView.step;
     }
 
     getRangesBy(biomsObserverData) {

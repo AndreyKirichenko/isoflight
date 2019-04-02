@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <Artboard>
-        {/*<Map />*/}
+        <Map />
         <Info />
       </Artboard>
     );
