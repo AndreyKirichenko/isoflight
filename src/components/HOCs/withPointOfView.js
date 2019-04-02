@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const integerCenter =  Math.floor(Number.MAX_SAFE_INTEGER / 2);
+const integerCenter =  0;
 
 const withPointOfView = (View) => {
   return class extends Component {
@@ -14,10 +14,8 @@ const withPointOfView = (View) => {
         y: integerCenter,
         speedX: 1,
         speedY: 1,
-        maxSpeedX: 1,
-        maxSpeedY: 1,
-        timeDelta: 0,
-        fps: 0
+        maxSpeedX: 2,
+        maxSpeedY: 2
       }
     };
 
@@ -44,6 +42,7 @@ const withPointOfView = (View) => {
 
         const x = prevState.pointOfView.x + speed.speedX;
         const y = prevState.pointOfView.y + speed.speedY;
+
 
         const pointOfView = {
           ...prevState.pointOfView,
@@ -84,7 +83,6 @@ const withPointOfView = (View) => {
     }
 
     render() {
-      // console.log('render withPointOfView');
       return <View {...this.state} {...this.props} />
     }
   }

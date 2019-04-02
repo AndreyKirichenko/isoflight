@@ -9,8 +9,7 @@ const withBiomsObserver = (View) => {
         speedX: 1,
         speedY: 0,
         radius: 1,
-        ranges: null,
-        timePerBiom: 10000
+        ranges: null
       }
     };
 
@@ -18,14 +17,59 @@ const withBiomsObserver = (View) => {
       return nextProps.pointOfView.step !== this.props.pointOfView.step;
     }
 
-    getRangesBy(biomsObserverData) {
-      const { x, y, radius } = biomsObserverData;
+    componentDidMount() {
+      this.update();
+    }
 
-      const x1 = this.toValidArrayIndex(x - radius);
-      const x2 = this.toValidArrayIndex(x + radius);
+    componentDidUpdate() {
+      this.update();
+    }
 
-      const y1 = this.toValidArrayIndex(y - radius);
-      const y2 = this.toValidArrayIndex(y + radius);
+    // toValidArrayIndex(num) {
+    //   return num >= 0 ? num : 0;
+    // }
+
+    update = () => {
+      this.setState((prevState, prevProps) => {
+
+        const { x, y } = this.getCurrentBiomPosition(prevProps);
+
+        const { radius } = prevState.biomsObserver;
+
+        const ranges = this.getRangesBy(x, y, radius);
+
+        const newObserverData = {
+          x,
+          y,
+          ranges
+        };
+
+        const biomsObserver = {
+          ...prevState.biomsObserver,
+          ...newObserverData
+        };
+
+        return {
+          biomsObserver
+        };
+      });
+    };
+
+    getCurrentBiomPosition(props) {
+      const { pointOfView: { scale, x, y } } = props;
+
+      return {
+        x: Math.floor(x / scale),
+        y: Math.floor(y / scale)
+      }
+    }
+
+    getRangesBy(x, y, radius) {
+      const x1 = x - radius;
+      const x2 = x + radius;
+
+      const y1 = y - radius;
+      const y2 = y + radius;
 
       return {
         x1,
@@ -35,46 +79,8 @@ const withBiomsObserver = (View) => {
       }
     }
 
-    toValidArrayIndex(num) {
-      return num >= 0 ? num : 0;
-    }
-
-    componentDidMount() {
-      setTimeout(() => {
-        this.update();
-      }, 1);
-    }
-
-    update = () => {
-      this.setState((prevState, prevProps) => {
-
-        this.getCurrentBiomPosition(prevProps);
-
-        const { x, y, speedX, speedY } = prevState.biomsObserver;
-
-        const newObserverData = {
-          x: x + speedX,
-          y: y + speedY,
-        };
-
-        const biomsObserver = {
-          ...prevState.biomsObserver,
-          ...newObserverData
-        };
-
-        biomsObserver.ranges = this.getRangesBy(biomsObserver);
-
-        return {
-          biomsObserver
-        };
-      });
-    };
-
-    getCurrentBiomPosition(props) {
-      console.log(props);
-    }
-
     render() {
+      // console.log('withBiomsObserver render');
       return <View {...this.state} {...this.props} />
     }
   };
