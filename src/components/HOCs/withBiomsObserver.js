@@ -48,7 +48,7 @@ const withBiomsObserver = (View) => {
     update = () => {
       this.setState((prevState, prevProps) => {
 
-        console.log(prevProps.pointOfView);
+        this.getCurrentBiomPosition(prevProps);
 
         const { x, y, speedX, speedY } = prevState.biomsObserver;
 
@@ -71,7 +71,7 @@ const withBiomsObserver = (View) => {
     };
 
     getCurrentBiomPosition(props) {
-
+      console.log(props);
     }
 
     render() {
