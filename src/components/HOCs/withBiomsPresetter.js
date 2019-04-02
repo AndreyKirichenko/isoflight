@@ -28,7 +28,8 @@ const withBiomsPresetter = (View) => {
         let bioms = [...state.bioms];
 
         if (props.biomsObserver.ranges) {
-          const { ranges: { x1, x2, y1, y2 }, scale } = props.biomsObserver;
+          const { ranges: { x1, x2, y1, y2 } } = props.biomsObserver;
+          const { scale } = props.pointOfView;
 
           for(let x = x1; x <= x2; x++) {
 

@@ -6,7 +6,6 @@ import Bioms from '../Bioms'
 
 class Map extends Component {
   render() {
-
     return (
       <Group>
         <Bioms {...this.props} />

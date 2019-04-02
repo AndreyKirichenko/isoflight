@@ -1,20 +1,22 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 const withBiomsObserver = (View) => {
   return class extends Component {
     state = {
       biomsObserver: {
-        step: 0,
-        scale: 250,
         x: 0,
         y: 0,
         speedX: 1,
         speedY: 0,
-        radius: 1,
+        radius: 2,
         ranges: null,
         timePerBiom: 10000
       }
     };
+
+    shouldComponentUpdate(nextProps) {
+      return nextProps.pointOfView.step !== this.props.pointOfView.step
+    }
 
     getRangesBy(biomsObserverData) {
       const { x, y, radius } = biomsObserverData;
@@ -40,21 +42,17 @@ const withBiomsObserver = (View) => {
     componentDidMount() {
       setTimeout(() => {
         this.update();
-
-        setInterval(() => {
-
-          this.update();
-
-        }, this.state.biomsObserver.timePerBiom);
       }, 1);
     }
 
     update = () => {
-      this.setState((prevState) => {
-        const { step, x, y, speedX, speedY } = prevState.biomsObserver;
+      this.setState((prevState, prevProps) => {
+
+        console.log(prevProps.pointOfView);
+
+        const { x, y, speedX, speedY } = prevState.biomsObserver;
 
         const newObserverData = {
-          step: step + 1,
           x: x + speedX,
           y: y + speedY,
         };
@@ -71,6 +69,10 @@ const withBiomsObserver = (View) => {
         };
       });
     };
+
+    getCurrentBiomPosition(props) {
+
+    }
 
     render() {
       return <View {...this.state} {...this.props} />
