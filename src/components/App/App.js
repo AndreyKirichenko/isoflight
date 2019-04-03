@@ -6,7 +6,7 @@ import Info from "../Info";
 class App extends Component {
   render() {
     return (
-      <Artboard>
+      <Artboard {...this.props} >
         <Map />
         <Info />
       </Artboard>

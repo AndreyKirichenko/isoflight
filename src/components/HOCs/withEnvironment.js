@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import debounce from '../../helpers/debounce';
 import throttle from '../../helpers/throttle';
 
@@ -6,8 +7,11 @@ const withEnvironment = (View) => {
   return class extends Component {
     state = {
       environment: {
+        rootElement: document.querySelector(this.props.root),
         height: 0,
         width: 0,
+        rootElementWidth: 0,
+        rootElementHeight: 0,
         windowWidth: 0,
         windowHeight: 0,
         mouseX: 0,
@@ -17,6 +21,7 @@ const withEnvironment = (View) => {
     };
 
     componentDidMount() {
+      console.log(this.state.environment.rootElement);
       this.setWindowSizes();
 
       document.addEventListener('resize', () => {

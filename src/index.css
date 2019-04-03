@@ -19,10 +19,12 @@ body {
   display: flex;
   justify-content: center;
 }
-.root {
+
+.porthole {
+  box-shadow: inset 0 0 10px #000;
   /*border: 20px solid #666;*/
   height: 600px;
-  width: 600px;
+  width: 500px;
   border-radius: 40%;
   overflow: hidden;
 }
