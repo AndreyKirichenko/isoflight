@@ -7,6 +7,10 @@ class Field extends Component {
     data: ''
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.data !== nextState.data;
+  }
+
   componentDidMount() {
     const { shapePromise } = this.props;
 
@@ -18,7 +22,6 @@ class Field extends Component {
   }
 
   render() {
-    console.log('field render');
     let { color } = this.props;
 
     if(!this.state.data) return null;

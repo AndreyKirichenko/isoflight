@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BiomPreset from '../../services/BiomPreset';
 
-const RADIUS = 1;
+const RADIUS = 2;
 
 const withBioms = (View) => {
   return class extends Component {
@@ -66,9 +66,12 @@ const withBioms = (View) => {
     getCurrentBiomPosition(pointOfView) {
       const { scale, x, y } = pointOfView;
 
+      const currentBiomX = Math.floor(x / scale);
+      const currentBiomY = Math.floor(y / scale);
+
       return {
-        currentBiomX: Math.floor(x / scale),
-        currentBiomY: Math.floor(y / scale)
+        currentBiomX,
+        currentBiomY
       }
     }
 
