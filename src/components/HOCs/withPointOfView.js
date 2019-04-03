@@ -7,7 +7,7 @@ const withPointOfView = (View) => {
     state = {
       pointOfView: {
         step: 0,
-        scale: 250, //pixels per field side
+        scale: 100, //pixels per field side
         xCenter: integerCenter,
         yCenter: integerCenter,
         x: integerCenter,
@@ -73,11 +73,8 @@ const withPointOfView = (View) => {
       const ratioMouseX = deltaMouseX / halfWidth;
       const ratioMouseY = deltaMouseY / halfHeight;
 
-      console.clear();
-      console.log(ratioMouseX, ratioMouseY);
-
-      const speedX = ratioMouseX * maxSpeedX;
-      const speedY = ratioMouseY * maxSpeedY;
+      const speedX = -ratioMouseX * maxSpeedX;
+      const speedY = -ratioMouseY * maxSpeedY;
 
       return {
         speedX,

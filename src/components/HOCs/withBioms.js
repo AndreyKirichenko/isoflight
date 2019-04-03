@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BiomPreset from '../../services/BiomPreset';
 
-const RADIUS = 2;
+const RADIUS = 1;
 
 const withBioms = (View) => {
   return class extends Component {
@@ -30,7 +30,7 @@ const withBioms = (View) => {
     };
 
     getBioms(state, props) {
-      const bioms = {...state.bioms};
+      const bioms = state.bioms;
 
       const biomsForRender = [];
 
@@ -49,7 +49,9 @@ const withBioms = (View) => {
           bioms[x] = {};
         }
         for(let y = y1; y <= y2; y++) {
-          bioms[x][y] = new BiomPreset(x, y, scale);
+          if(!bioms[x][y]) {
+            bioms[x][y] = new BiomPreset(x, y, scale);
+          }
           biomsForRender.push(bioms[x][y]);
         }
       }

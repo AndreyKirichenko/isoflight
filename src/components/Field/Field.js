@@ -18,11 +18,8 @@ class Field extends Component {
   }
 
   render() {
-    let { color, isCurrent } = this.props;
-
-    if(isCurrent) {
-      color = '#f33';
-    }
+    console.log('field render');
+    let { color } = this.props;
 
     if(!this.state.data) return null;
 

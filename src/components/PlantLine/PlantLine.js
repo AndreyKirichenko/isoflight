@@ -37,7 +37,6 @@ class PlantLine extends Component {
   };
 
   darkPart() {
-    return null;
     const { shadowShape, frontalCoords } = this.state.data;
     const { shadowColor } = this.props;
     if(!shadowShape) {
