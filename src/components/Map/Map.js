@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Group } from 'react-konva';
 import compose from '../../helpers/compose';
-import { withBiomsPresetter, withBiomsObserver } from '../HOCs';
+import { withBioms } from '../HOCs';
 import Bioms from '../Bioms'
 
 class Map extends Component {
@@ -12,7 +12,7 @@ class Map extends Component {
 
   render() {
     return (
-      <Group x={-this.props.pointOfView.x} y={-this.props.pointOfView.y}>
+      <Group x={-this.props.pointOfView.x + this.props.environment.width / 2} y={-this.props.pointOfView.y}>
         <Bioms {...this.props} />
       </Group>
     );
@@ -20,6 +20,5 @@ class Map extends Component {
 }
 
 export default compose(
-  withBiomsObserver,
-  withBiomsPresetter
+  withBioms
 )(Map);

@@ -13,7 +13,7 @@ const withPointOfView = (View) => {
         x: integerCenter,
         y: integerCenter,
         speedX: 1,
-        speedY: 1,
+        speedY: 0,
         maxSpeedX: 1,
         maxSpeedY: 1
       }
@@ -67,11 +67,14 @@ const withPointOfView = (View) => {
       const halfWidth = width / 2;
       const halfHeight = height / 2;
 
-      const deltaMouseX = -(halfWidth - mouseX);
-      const deltaMouseY = -(halfHeight - mouseY);
+      const deltaMouseX = (halfWidth - mouseX);
+      const deltaMouseY = (halfHeight - mouseY);
 
       const ratioMouseX = deltaMouseX / halfWidth;
       const ratioMouseY = deltaMouseY / halfHeight;
+
+      console.clear();
+      console.log(ratioMouseX, ratioMouseY);
 
       const speedX = ratioMouseX * maxSpeedX;
       const speedY = ratioMouseY * maxSpeedY;

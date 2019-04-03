@@ -7,8 +7,7 @@ import Shapes from './Shapes';
 
 class BiomPreset {
   constructor(x, y, scale, season = 'summer') {
-    const frontalCoords =
-      Isometry.toFrontalCoords(x * scale, y * scale);
+    const frontalCoords = Isometry.toFrontalCoords(x * scale, y * scale);
 
     const data = BiomPreset.getRandomBiomPreset(season, scale);
 

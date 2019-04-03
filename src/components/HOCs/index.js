@@ -1,6 +1,5 @@
-import withBiomsPresetter from './withBiomsPresetter';
-import withBiomsObserver from './withBiomsObserver';
+import withBioms from './withBioms';
 import withEnvironment from './withEnvironment';
 import withPointOfView from './withPointOfView';
 
-export { withBiomsPresetter, withBiomsObserver, withEnvironment, withPointOfView };
+export { withBioms, withEnvironment, withPointOfView };

@@ -20,9 +20,9 @@ const withEnvironment = (View) => {
         this.setWindowSizes()
       });
 
-      // window.addEventListener('mousemove', (e) => {
-      //   this.setMousePosition(e);
-      // });
+      window.addEventListener('mousemove', (e) => {
+        this.setMousePosition(e);
+      });
     }
 
     setWindowSizes = debounce(() => {
