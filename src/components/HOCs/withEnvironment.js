@@ -8,6 +8,8 @@ const withEnvironment = (View) => {
       environment: {
         height: 0,
         width: 0,
+        windowWidth: 0,
+        windowHeight: 0,
         mouseX: 0,
         mouseY: 0,
         development: false
@@ -30,8 +32,8 @@ const withEnvironment = (View) => {
       this.setState((prevState) => {
         const environment = {
           ...prevState.environment,
-          // height: window.innerHeight,
-          // width: window.innerWidth / 3
+          windowHeight: window.innerHeight,
+          windowWidth: window.innerWidth,
           height: 600,
           width: 600
         };
@@ -45,6 +47,8 @@ const withEnvironment = (View) => {
     setMousePosition = throttle((e) => {
       this.setState((prevState) => {
         if(!e.pageX || !e.pageY) return;
+
+        console.log()
 
         const environment = {
           ...prevState.environment,

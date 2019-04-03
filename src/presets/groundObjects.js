@@ -80,7 +80,7 @@ const groundObjects = {
     },
 
     bed: {
-      quantity: 16,
+      quantity: 0,
 
       lightShape: {
         minHeight: 2,
