@@ -14,8 +14,8 @@ const withPointOfView = (View) => {
         y: integerCenter,
         speedX: 1,
         speedY: 1,
-        maxSpeedX: 2,
-        maxSpeedY: 2
+        maxSpeedX: 1,
+        maxSpeedY: 1
       }
     };
 

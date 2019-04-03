@@ -3,10 +3,13 @@ import Biom from '../Biom';
 
 class Bioms extends Component {
   shouldComponentUpdate(nextProps) {
-    if(!Object.keys(nextProps.bioms).length) return false;
+    return false;
+    if(!Object.keys(nextProps.biomsPresetter.bioms).length) return false;
 
-    const currentRanges = this.props.biomsObserver.ranges;
-    const nextRanges = nextProps.biomsObserver.ranges;
+    const currentRanges = this.props.biomsPresetter.ranges;
+    const nextRanges = nextProps.biomsPresetter.ranges;
+
+    console.log('currentRanges, nextRanges', currentRanges, nextRanges);
 
     return !(
       currentRanges.x1 === nextRanges.x1 &&
@@ -17,39 +20,28 @@ class Bioms extends Component {
   }
 
   getBioms() {
-    const { bioms, biomsObserver } = this.props;
+    const { bioms, ranges } = this.props.biomsPresetter;
 
-    if(!biomsObserver.ranges) return null;
+    if(!ranges && !Object.keys(bioms).length) {
+      console.log('getBioms return null');
+      return null;
+    }
 
-    const { x1, x2, y1, y2 } = biomsObserver.ranges;
+    const { x1, x2, y1, y2 } = ranges;
 
-    const biomsToRender = {};
+    const biomsToRender = [];
 
-    return null;
-
-    console.log('---');
     for(let x = x1; x <= x2; x++) {
-      console.log('x', x)
-      if(!biomsToRender[x]) {
-        biomsToRender[x] = {};
-      }
-
       for(let y = y1; y <= y2; y++) {
         const key = `${x}-${y}`;
-        console.log('y', y);
-
-        if (bioms[x][y]) {
-          const key = `${x}-${y}`;
-          biomsToRender[x][y] = <Biom {...bioms[x][y]} key={key} />;
-        }
+        biomsToRender.push(<Biom {...bioms[x][y]} key={key} />);
       }
     }
 
-    return Object.keys(biomsToRender);
+    return biomsToRender;
   };
 
   render() {
-    console.log('Bioms render');
     return (
       <Fragment>
         { this.getBioms() }

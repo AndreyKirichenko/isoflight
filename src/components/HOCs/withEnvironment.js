@@ -20,9 +20,9 @@ const withEnvironment = (View) => {
         this.setWindowSizes()
       });
 
-      window.addEventListener('mousemove', (e) => {
-        this.setMousePosition(e);
-      });
+      // window.addEventListener('mousemove', (e) => {
+      //   this.setMousePosition(e);
+      // });
     }
 
     setWindowSizes = debounce(() => {
@@ -31,6 +31,8 @@ const withEnvironment = (View) => {
           ...prevState.environment,
           height: window.innerHeight,
           width: window.innerWidth
+          // height: 600,
+          // width: 300
         };
 
         return {

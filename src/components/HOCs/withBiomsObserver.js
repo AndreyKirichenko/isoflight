@@ -25,10 +25,6 @@ const withBiomsObserver = (View) => {
       this.update();
     }
 
-    // toValidArrayIndex(num) {
-    //   return num >= 0 ? num : 0;
-    // }
-
     update = () => {
       this.setState((prevState, prevProps) => {
 
@@ -59,8 +55,8 @@ const withBiomsObserver = (View) => {
       const { pointOfView: { scale, x, y } } = props;
 
       return {
-        x: Math.floor(x / scale),
-        y: Math.floor(y / scale)
+        x: Math.ceil(x / scale),
+        y: Math.ceil(y / scale)
       }
     }
 
@@ -80,7 +76,6 @@ const withBiomsObserver = (View) => {
     }
 
     render() {
-      // console.log('withBiomsObserver render');
       return <View {...this.state} {...this.props} />
     }
   };

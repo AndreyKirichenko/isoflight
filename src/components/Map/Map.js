@@ -12,7 +12,7 @@ class Map extends Component {
 
   render() {
     return (
-      <Group>
+      <Group x={-this.props.pointOfView.x} y={-this.props.pointOfView.y}>
         <Bioms {...this.props} />
       </Group>
     );
