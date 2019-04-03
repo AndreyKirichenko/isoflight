@@ -33,10 +33,6 @@ export default {
   ,
   fields: {
     '#777A7E': {
-      grass: [
-        '#998675',
-        '#778675'
-      ],
       furrow: [
         '#998675',
         '#778675'
@@ -54,10 +50,6 @@ export default {
     },
 
     '#999569': {
-      grass: [
-        '#AA9775',
-        '#77737E'
-      ],
       furrow: [
         '#998675',
         '#778675'
@@ -69,12 +61,12 @@ export default {
 
     },
 
-    '#8CC63F': {
+    '#777A6E': {
       grapes: [
-        '#39B54A'
+        '#3e7648'
       ],
       gardenTrees: [
-        '#39B54A'
+        '#2f7662'
       ]
     },
 

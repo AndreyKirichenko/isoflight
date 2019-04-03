@@ -6,7 +6,7 @@ html, body {
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  background-color: #fff;
+  background-color: #000;
   box-sizing: border-box;
   font-size: 16px;
   font-family: -apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
@@ -16,8 +16,6 @@ body {
 }
 
 #root {
-  /*background-color: #887f60;*/
-  background-color: #333;
   min-height: 100vh;
   min-width: 100vw;
 }

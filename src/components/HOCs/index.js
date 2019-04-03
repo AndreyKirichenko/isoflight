@@ -1,5 +1,5 @@
-import withMapPresetter from './withMapPresetter';
-import withObserver from './withObserver';
+import withBioms from './withBioms';
 import withEnvironment from './withEnvironment';
+import withPointOfView from './withPointOfView';
 
-export { withMapPresetter, withObserver, withEnvironment };
+export { withBioms, withEnvironment, withPointOfView };

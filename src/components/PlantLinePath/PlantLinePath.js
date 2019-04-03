@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Path } from 'react-konva';
 import CoordStringify from '../../services/CoordStringify';
 
-const PlantLinePath = (props) => {
-  const { fill, coords } = props;
+class PlantLinePath extends Component {
 
-  const data = CoordStringify.getString(coords);
+  shouldComponentUpdate(nextProps) {
+    return false;
+  }
 
-  return (
-    <Path data={data}
-          fill={fill}
-    />
-  );
-};
+  render() {
+
+    const { fill, coords } = this.props;
+
+    const data = CoordStringify.getString(coords);
+
+    return (
+      <Path data={data}
+            fill={fill}
+      />
+    );
+  }
+}
 
 export default PlantLinePath;

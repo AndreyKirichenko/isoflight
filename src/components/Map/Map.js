@@ -1,37 +1,27 @@
 import React, { Component } from 'react';
-import { Stage, Layer, Group } from 'react-konva';
-import { withMapPresetter, withObserver, withEnvironment} from '../HOCs';
+import { Group } from 'react-konva';
 import compose from '../../helpers/compose';
+import { withBioms } from '../HOCs';
 import Bioms from '../Bioms'
+import Isometry from "../../services/Isometry";
 
 class Map extends Component {
-  static getCommonPosition (width, height) {
-    const x = width / 2;
-    const y = -height;
-
-    return {
-      x,
-      y
-    };
-  };
+  shouldComponentUpdate(nextProps) {
+    return nextProps.pointOfView.x !== this.props.pointOfView.x ||
+           nextProps.pointOfView.y !== this.props.pointOfView.y;
+  }
 
   render() {
-    const { window, window: { width, height } } = this.props;
-
+    const { x, y } = Isometry.toFrontalCoords(this.props.pointOfView.x, this.props.pointOfView.y)
     return (
-      <Stage {...window} >
-        <Layer>
-          <Group>
-            <Bioms {...this.props} />
-          </Group>
-        </Layer>
-      </Stage>
+      <Group x={-x + this.props.environment.width / 2}
+             y={-y  + this.props.environment.height / 2}>
+        <Bioms {...this.props} />
+      </Group>
     );
   }
 }
 
 export default compose(
-  withEnvironment,
-  withObserver,
-  withMapPresetter
+  withBioms
 )(Map);
