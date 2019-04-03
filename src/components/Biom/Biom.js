@@ -31,7 +31,7 @@ const Biom = (props) => {
       { getField() }
       { getBorderLine(props.borderLineX) }
       { getBorderLine(props.borderLineY) }
-      {/*{ getFieldPlants() }*/}
+      { getFieldPlants() }
     </Group>
   );
 };

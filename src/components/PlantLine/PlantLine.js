@@ -5,8 +5,13 @@ import PlantLinePath from '../PlantLinePath';
 class PlantLine extends Component {
 
   state = {
-    data: null
+    data: null,
+    rendered: false
   };
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return nextState.data !== this.state.data
+  }
 
   componentDidMount() {
     this.props.shapePromise.then((data) => {
@@ -46,10 +51,8 @@ class PlantLine extends Component {
     return PlantLine.getPart(shadowShape, shadowColor, frontalCoords);
   };
 
-
   render() {
     if(!this.state.data) return null;
-
     const scaleX = this.state.data.reflected ? -1 : 1;
 
     return (

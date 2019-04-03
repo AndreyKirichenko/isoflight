@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 
 const integerCenter =  0;
+const mouseMuteRatio = 0.2;
 
 const withPointOfView = (View) => {
   return class extends Component {
     state = {
       pointOfView: {
         step: 0,
-        scale: 250, //pixels per field side
+        scale: 260, //pixels per field side
         xCenter: integerCenter,
         yCenter: integerCenter,
         x: integerCenter,
         y: integerCenter,
         speedX: 1,
-        speedY: 0,
-        maxSpeedX: 1,
-        maxSpeedY: 1
+        speedY: 1,
+        maxSpeedX: 2,
+        maxSpeedY: 2
       }
     };
 
@@ -26,7 +27,9 @@ const withPointOfView = (View) => {
     tikTak() {
       this.update();
       const tik = () => {
-        this.update();
+        setTimeout(() => {
+          this.update();
+        }, 1);
 
         requestAnimationFrame(tik);
       };
@@ -73,12 +76,20 @@ const withPointOfView = (View) => {
       const ratioMouseX = deltaMouseX / halfWidth;
       const ratioMouseY = deltaMouseY / halfHeight;
 
-      const speedX = -ratioMouseX * maxSpeedX;
-      const speedY = -ratioMouseY * maxSpeedY;
+      let speedX = 0;
+      let speedY = 0;
+
+      if(-mouseMuteRatio > ratioMouseX || ratioMouseX > mouseMuteRatio) {
+        speedX = -ratioMouseX * maxSpeedX;
+      }
+
+      if(-mouseMuteRatio > ratioMouseY || ratioMouseY > mouseMuteRatio) {
+        speedY = -ratioMouseY * maxSpeedY;
+      }
 
       return {
         speedX,
-        speedY
+        speedY,
       };
     }
 

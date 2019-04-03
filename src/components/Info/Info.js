@@ -37,7 +37,6 @@ class Info extends Component {
     return (
       <Group x='10' y='-170'>
         <Text fontSize='16' fill='#ccc'  lineHeight='24' text={`FPS: ${fps}`} />
-        <Text y='24' fontSize='16' fill='#ccc'  lineHeight='24' text={`MSPF: ${timeDelta}`} />
       </Group>
     );
   }

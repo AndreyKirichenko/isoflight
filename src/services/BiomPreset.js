@@ -1,4 +1,3 @@
-import Color from 'color';
 import Isometry from "./Isometry";
 import Random from "./Random";
 import { summer, winter, groundObjects } from "../presets";
@@ -82,8 +81,6 @@ class BiomPreset {
 
     const lightColor = BiomPreset.getRandomFieldPlantColor(colorSchemes, fieldId, name);
 
-    const shadowColor = Color(lightColor).darken(0.10).hex();
-
     const shapePromises = BiomPreset.getRandomFieldPlantsShapes(name, scale);
 
     const reflected = Random.getRandomBool();
@@ -91,14 +88,13 @@ class BiomPreset {
     return {
       name,
       lightColor,
-      shadowColor,
       shapePromises,
       reflected
     }
   };
 
   static getRandomFieldPlantsShapes = (plantsName, scale) => {
-    const { quantity, lightShape, shadowShape } = groundObjects.plantLines[plantsName];
+    const { quantity, lightShape } = groundObjects.plantLines[plantsName];
 
     let shapePromises = [];
 
@@ -106,12 +102,12 @@ class BiomPreset {
 
     for (let i = 1; i <= quantity; i++) {
       const frontalCoords = {
-        x: -average * i,
-        y: Isometry.getY(average * i)
+        x: -average * i + 1,
+        y: Isometry.getY(average * i + 1)
       };
       
       shapePromises.push(
-        BiomPreset.getRandomFieldPlantLineShapes({ lightShape, shadowShape, frontalCoords, scale })
+        BiomPreset.getRandomFieldPlantLineShapes({ lightShape, frontalCoords, scale })
       );
     }
 

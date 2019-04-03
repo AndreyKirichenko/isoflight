@@ -6,7 +6,7 @@ const groundObjects = {
       lightShape: {
         minHeight: 15,
         maxHeight: 30,
-        pointsBetween: 40,
+        pointsBetween: 30,
         flX: 0.33,
         flY: 1,
         flCX: 0.2,
@@ -14,11 +14,11 @@ const groundObjects = {
 
       shadowShape: {
         minHeight: 5,
-        maxHeight: 20,
-        pointsBetween: 60,
+        maxHeight: 15,
+        pointsBetween: 30,
         flX: 0.33,
         flY: 1,
-        flCX: 1,
+        flCX: 0,
       }
     },
 
@@ -28,30 +28,29 @@ const groundObjects = {
       lightShape: {
         minHeight: 10,
         maxHeight: 20,
-        pointsBetween: 30,
+        pointsBetween: 16,
         flX: 0.5,
         flY: 1,
-        flCX: 1,
+        flCX: 0,
       },
 
       shadowShape: {
         minHeight: 4,
-        maxHeight: 15,
-        pointsBetween: 60,
+        maxHeight: 8,
+        pointsBetween: 4,
         flX: 0.25,
-        flY: 1,
-        flCX: 1,
+        flY: 0.25,
+        flCX: 0.5,
       }
     },
 
     gardenTrees: {
-      // quantity: 20,
       quantity: 10,
 
       lightShape: {
-        minHeight: 4,
-        maxHeight: 12,
-        pointsBetween: 30,
+        minHeight: 2,
+        maxHeight: 10,
+        pointsBetween: 12,
         flX: 0.25,
         flY: 1,
         flCX: 0.25,
@@ -60,7 +59,7 @@ const groundObjects = {
       shadowShape: {
         minHeight: 2,
         maxHeight: 8,
-        pointsBetween: 60,
+        pointsBetween: 10,
         flX: 0.25,
         flY: 1,
         flCX: 0.25,
@@ -68,74 +67,40 @@ const groundObjects = {
     },
 
     grapes: {
-      // quantity: 24,
-      quantity: 12,
+      quantity: 0,
 
       lightShape: {
-        minHeight: 4,
-        maxHeight: 10,
-        pointsBetween: 30,
-        flX: 0.5,
-        flY: 0.75,
-        flCX: 0.5,
-      },
-
-      shadowShape: {
-        minHeight: 2,
+        minHeight: 3,
         maxHeight: 4,
-        pointsBetween: 60,
+        pointsBetween: 12,
         flX: 0.25,
-        flY: 1,
+        flY: 0.25,
         flCX: 0.5,
       }
     },
 
     bed: {
-      // quantity: 32,
       quantity: 16,
 
       lightShape: {
         minHeight: 2,
-        maxHeight: 5,
-        pointsBetween: 20,
+        maxHeight: 3,
+        pointsBetween: 5,
         flX: 0.5,
-        flY: 1,
-        flCX: 0.1,
-      },
-
-      shadowShape: {
-        minHeight: 1,
-        maxHeight: 4,
-        pointsBetween: 40,
-        flX: 0.25,
         flY: 1,
         flCX: 0.1,
       }
     },
 
     furrow: {
-      // quantity: 48,
-      quantity: 24,
-
-      lightShape: {
-        minHeight: 2,
-        maxHeight: 3,
-        pointsBetween: 20,
-        flX: 0.5,
-        flY: 1,
-        flCX: 0,
-      },
-    },
-    grass: {
-      // quantity: 64,
-      quantity: 32,
+      quantity: 20,
 
       lightShape: {
         minHeight: 1,
         maxHeight: 2,
-        pointsBetween: 20,
-        flX: 0.5,
-        flY: 1,
+        pointsBetween: 3,
+        flX: 0.25,
+        flY: 0.25,
         flCX: 0,
       },
     }
