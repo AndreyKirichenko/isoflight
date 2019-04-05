@@ -13,8 +13,8 @@ const withPointOfView = (View) => {
         yCenter: integerCenter,
         x: integerCenter,
         y: integerCenter,
-        speedX: 0,
-        speedY: 0,
+        speedX: 1,
+        speedY: -1,
         maxSpeedX: 1,
         maxSpeedY: 1
       }
@@ -29,7 +29,7 @@ const withPointOfView = (View) => {
       const tik = () => {
         setTimeout(() => {
           this.update();
-        }, 1);
+        }, 0);
 
         requestAnimationFrame(tik);
       };
@@ -41,11 +41,18 @@ const withPointOfView = (View) => {
       this.setState((prevState, prevProps) => {
         const step = prevState.pointOfView.step + 1;
 
+        let x = prevState.pointOfView.x;
+        let y = prevState.pointOfView.y;
+
         const speed = this.getCurrentSpeed(prevProps.environment, prevState.pointOfView);
 
-        const x = prevState.pointOfView.x + speed.speedX;
-        const y = prevState.pointOfView.y + speed.speedY;
-
+        if (speed){
+          x += speed.speedX;
+          y += speed.speedY;
+        } else {
+          x += prevState.pointOfView.speedX;
+          y += prevState.pointOfView.speedY;
+        }
 
         const pointOfView = {
           ...prevState.pointOfView,
@@ -64,7 +71,9 @@ const withPointOfView = (View) => {
     getCurrentSpeed(environment, pointOfView) {
       const { windowWidth, windowHeight, mouseX, mouseY } = environment;
 
-      if(!mouseX && mouseY) return null;
+      if(!mouseX && !mouseY) return null;
+
+      console.log(mouseX, mouseY);
 
       const { maxSpeedX, maxSpeedY } = pointOfView;
 
@@ -79,6 +88,8 @@ const withPointOfView = (View) => {
 
       let speedX = pointOfView.speedX;
       let speedY = pointOfView.speedY;
+
+
 
       if(-mouseMuteRatio > ratioMouseX || ratioMouseX > mouseMuteRatio) {
         speedX = -ratioMouseX * maxSpeedX;

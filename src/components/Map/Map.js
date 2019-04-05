@@ -12,7 +12,8 @@ class Map extends Component {
   }
 
   render() {
-    const { x, y } = Isometry.toFrontalCoords(this.props.pointOfView.x, this.props.pointOfView.y)
+    const { x, y } = Isometry.toFrontalCoords(this.props.pointOfView.x, this.props.pointOfView.y);
+
     return (
       <Group x={-x + this.props.environment.width / 2}
              y={-y  + this.props.environment.height / 2}>

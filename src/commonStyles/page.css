@@ -1,0 +1,30 @@
+.page {
+  min-height: 100vh;
+  padding-top: 128px;
+  position: relative;
+  width: 100%;
+}
+
+.page__section {
+  align-items: flex-start;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.page__content {
+  box-sizing: border-box;
+  max-width: 1280px;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+  .page__content {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}

@@ -10,8 +10,6 @@ const withEnvironment = (View) => {
         rootElement: document.querySelector(this.props.root),
         height: 0,
         width: 0,
-        rootElementWidth: 0,
-        rootElementHeight: 0,
         windowWidth: 0,
         windowHeight: 0,
         mouseX: 0,
@@ -21,7 +19,7 @@ const withEnvironment = (View) => {
     };
 
     componentDidMount() {
-      console.log(this.state.environment.rootElement);
+      console.log();
       this.setWindowSizes();
 
       document.addEventListener('resize', () => {
@@ -29,7 +27,7 @@ const withEnvironment = (View) => {
       });
 
       document.addEventListener('mousemove', (e) => {
-        this.setMousePosition(e);
+        // this.setMousePosition(e);
       });
     }
 
@@ -39,8 +37,8 @@ const withEnvironment = (View) => {
           ...prevState.environment,
           windowHeight: window.innerHeight,
           windowWidth: window.innerWidth,
-          height: 600,
-          width: 600
+          height: this.state.environment.rootElement.offsetHeight,
+          width: this.state.environment.rootElement.offsetWidth,
         };
 
         return {
@@ -53,8 +51,6 @@ const withEnvironment = (View) => {
       this.setState((prevState) => {
         if(!e.pageX || !e.pageY) return;
 
-        console.log()
-
         const environment = {
           ...prevState.environment,
           mouseX: e.pageX,
@@ -65,7 +61,7 @@ const withEnvironment = (View) => {
           environment
         }
       });
-    }, 200);
+    }, 100);
 
     render () {
       return (
