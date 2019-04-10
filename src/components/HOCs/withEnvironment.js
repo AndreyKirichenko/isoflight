@@ -6,8 +6,11 @@ const withEnvironment = (View) => {
   return class extends Component {
     state = {
       environment: {
+        rootElement: document.querySelector(this.props.root),
         height: 0,
         width: 0,
+        windowWidth: 0,
+        windowHeight: 0,
         mouseX: 0,
         mouseY: 0,
         development: false
@@ -22,7 +25,7 @@ const withEnvironment = (View) => {
       });
 
       document.addEventListener('mousemove', (e) => {
-        this.setMousePosition(e);
+        // this.setMousePosition(e);
       });
     }
 
@@ -30,10 +33,10 @@ const withEnvironment = (View) => {
       this.setState((prevState) => {
         const environment = {
           ...prevState.environment,
-          // height: window.innerHeight,
-          // width: window.innerWidth / 3
-          height: 600,
-          width: 600
+          windowHeight: window.innerHeight,
+          windowWidth: window.innerWidth,
+          height: this.state.environment.rootElement.offsetHeight,
+          width: this.state.environment.rootElement.offsetWidth,
         };
 
         return {
@@ -56,7 +59,7 @@ const withEnvironment = (View) => {
           environment
         }
       });
-    }, 200);
+    }, 100);
 
     render () {
       return (

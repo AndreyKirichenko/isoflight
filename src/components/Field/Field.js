@@ -12,12 +12,8 @@ class Field extends Component {
   }
 
   componentDidMount() {
-    const { shapePromise } = this.props;
-
-    shapePromise.then((result) => {
-      this.setState({
-        data: CoordStringify.getString(result)
-      });
+    this.setState({
+      data: CoordStringify.getString(this.props.shape)
     });
   }
 

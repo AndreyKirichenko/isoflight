@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import throttle from '../../helpers/throttle';
+
 const integerCenter =  0;
 const mouseMuteRatio = 0.2;
 
@@ -8,15 +10,15 @@ const withPointOfView = (View) => {
     state = {
       pointOfView: {
         step: 0,
-        scale: 260, //pixels per field side
+        scale: 200, //pixels per field side
         xCenter: integerCenter,
         yCenter: integerCenter,
         x: integerCenter,
         y: integerCenter,
         speedX: 1,
-        speedY: 1,
-        maxSpeedX: 2,
-        maxSpeedY: 2
+        speedY: -1,
+        maxSpeedX: 1,
+        maxSpeedY: 1
       }
     };
 
@@ -25,27 +27,32 @@ const withPointOfView = (View) => {
     }
 
     tikTak() {
+      // is best working variant i tested
       this.update();
       const tik = () => {
-        setTimeout(() => {
-          this.update();
-        }, 1);
-
+        this.update();
         requestAnimationFrame(tik);
       };
-
       tik();
-    }
+    };
 
     update() {
+
       this.setState((prevState, prevProps) => {
         const step = prevState.pointOfView.step + 1;
 
+        let x = prevState.pointOfView.x;
+        let y = prevState.pointOfView.y;
+
         const speed = this.getCurrentSpeed(prevProps.environment, prevState.pointOfView);
 
-        const x = prevState.pointOfView.x + speed.speedX;
-        const y = prevState.pointOfView.y + speed.speedY;
-
+        if (speed){
+          x += speed.speedX;
+          y += speed.speedY;
+        } else {
+          x += prevState.pointOfView.speedX;
+          y += prevState.pointOfView.speedY;
+        }
 
         const pointOfView = {
           ...prevState.pointOfView,
@@ -62,13 +69,14 @@ const withPointOfView = (View) => {
     }
 
     getCurrentSpeed(environment, pointOfView) {
-      const { height, width, mouseX, mouseY } = environment;
+      const { windowWidth, windowHeight, mouseX, mouseY } = environment;
+
+      if(!mouseX && !mouseY) return null;
+
       const { maxSpeedX, maxSpeedY } = pointOfView;
 
-      if(!mouseX && mouseY) return null;
-
-      const halfWidth = width / 2;
-      const halfHeight = height / 2;
+      const halfWidth = windowWidth / 2;
+      const halfHeight = windowHeight / 2;
 
       const deltaMouseX = (halfWidth - mouseX);
       const deltaMouseY = (halfHeight - mouseY);
@@ -76,8 +84,10 @@ const withPointOfView = (View) => {
       const ratioMouseX = deltaMouseX / halfWidth;
       const ratioMouseY = deltaMouseY / halfHeight;
 
-      let speedX = 0;
-      let speedY = 0;
+      let speedX = pointOfView.speedX;
+      let speedY = pointOfView.speedY;
+
+
 
       if(-mouseMuteRatio > ratioMouseX || ratioMouseX > mouseMuteRatio) {
         speedX = -ratioMouseX * maxSpeedX;

@@ -11,7 +11,7 @@ class Bioms extends Component {
 
     return biomsForRender.map((biom) => {
       const key = `${biom.coords.x}-${biom.coords.y}`;
-      return <Biom {...biom} key={key} />
+      return <Biom {...biom} key={key} />;
     });
   };
 

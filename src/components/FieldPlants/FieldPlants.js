@@ -3,13 +3,13 @@ import { Group } from 'react-konva';
 import PlantLine from '../PlantLine';
 
 const FieldPlants = (props) => {
-  const { lightColor, shadowColor, shapePromises, reflected } = props;
+  const { lightColor, shadowColor, shapes, reflected } = props;
 
   const allPlants = () => {
-    return shapePromises.map((shapePromise, key) => {
+    return shapes.map((shapes, key) => {
 
         const plantLineProps = {
-          shapePromise,
+          shapes,
           lightColor,
           shadowColor
         };

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App/';
-import './index.css';
+import './styles/index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = '.porthole';
+ReactDOM.render(<App root={root} />, document.querySelector(root));

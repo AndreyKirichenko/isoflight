@@ -5,8 +5,7 @@ import PlantLinePath from '../PlantLinePath';
 class PlantLine extends Component {
 
   state = {
-    data: null,
-    rendered: false
+    data: null
   };
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -14,12 +13,9 @@ class PlantLine extends Component {
   }
 
   componentDidMount() {
-    this.props.shapePromise.then((data) => {
-
-      this.setState({
-        data
-      })
-    })
+    this.setState({
+      data: this.props.shapes
+    });
   }
 
   static getPart(coords, fill, frontalCoords) {

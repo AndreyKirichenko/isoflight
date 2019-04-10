@@ -18,6 +18,7 @@ class Info extends Component {
     const tik = () => {
       requestAnimationFrame(tik);
       const now = performance.now();
+      // const now = new Date();
       const timeDelta = Math.ceil(now - (time || now));
       const fps = Math.ceil(1000 / timeDelta);
 
@@ -33,7 +34,7 @@ class Info extends Component {
   }
 
   render() {
-    const { timeDelta, fps } = this.state;
+    const { fps } = this.state;
     return (
       <Group x='10' y='-170'>
         <Text fontSize='16' fill='#ccc'  lineHeight='24' text={`FPS: ${fps}`} />
