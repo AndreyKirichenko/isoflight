@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import debounce from '../../helpers/debounce';
 import throttle from '../../helpers/throttle';
 
@@ -19,7 +18,6 @@ const withEnvironment = (View) => {
     };
 
     componentDidMount() {
-      console.log();
       this.setWindowSizes();
 
       document.addEventListener('resize', () => {

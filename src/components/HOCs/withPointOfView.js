@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import throttle from '../../helpers/throttle';
+
 const integerCenter =  0;
 const mouseMuteRatio = 0.2;
 
@@ -25,19 +27,17 @@ const withPointOfView = (View) => {
     }
 
     tikTak() {
+      // is best working variant i tested
       this.update();
       const tik = () => {
-        setTimeout(() => {
-          this.update();
-        }, 0);
-
+        this.update();
         requestAnimationFrame(tik);
       };
-
       tik();
-    }
+    };
 
     update() {
+
       this.setState((prevState, prevProps) => {
         const step = prevState.pointOfView.step + 1;
 
@@ -72,8 +72,6 @@ const withPointOfView = (View) => {
       const { windowWidth, windowHeight, mouseX, mouseY } = environment;
 
       if(!mouseX && !mouseY) return null;
-
-      console.log(mouseX, mouseY);
 
       const { maxSpeedX, maxSpeedY } = pointOfView;
 
