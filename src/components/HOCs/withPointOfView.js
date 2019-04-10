@@ -10,7 +10,7 @@ const withPointOfView = (View) => {
     state = {
       pointOfView: {
         step: 0,
-        scale: 200, //pixels per field side
+        scale: 160, //pixels per field side
         xCenter: integerCenter,
         yCenter: integerCenter,
         x: integerCenter,
@@ -37,7 +37,6 @@ const withPointOfView = (View) => {
     };
 
     update() {
-
       this.setState((prevState, prevProps) => {
         const step = prevState.pointOfView.step + 1;
 
