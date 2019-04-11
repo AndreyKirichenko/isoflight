@@ -1,5 +1,5 @@
 # This is my hompage
-...and experiment with svg and isometry.
+...and experiments with svg, canvas and isometry.
 
 ## Bootstrapped with create-react-app
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

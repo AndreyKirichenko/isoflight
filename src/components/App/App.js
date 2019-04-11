@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <Artboard {...this.props} >
         <Map />
-        <Info />
+        {/*<Info />*/}
       </Artboard>
     );
   }
