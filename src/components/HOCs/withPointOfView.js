@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import throttle from '../../helpers/throttle';
-
 const minWindowWidth = 600;
 const integerCenter =  0;
 const mouseMuteRatio = 0.2;
@@ -25,7 +23,6 @@ const withPointOfView = (View) => {
 
     componentDidMount() {
       this.tikTak();
-
     }
 
     tikTak() {

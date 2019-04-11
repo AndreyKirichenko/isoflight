@@ -25,7 +25,7 @@ const withEnvironment = (View) => {
       });
 
       document.addEventListener('mousemove', (e) => {
-        // this.setMousePosition(e);
+        this.setMousePosition(e);
       });
     }
 
