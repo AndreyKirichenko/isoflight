@@ -20,7 +20,7 @@ const withEnvironment = (View) => {
     componentDidMount() {
       this.setWindowSizes();
 
-      document.addEventListener('resize', () => {
+      window.addEventListener('resize', () => {
         this.setWindowSizes()
       });
 
@@ -43,7 +43,7 @@ const withEnvironment = (View) => {
           environment
         }
       });
-    }, 200, true);
+    }, 100, false);
 
     setMousePosition = throttle((e) => {
       this.setState((prevState) => {
