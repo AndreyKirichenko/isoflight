@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import throttle from '../../helpers/throttle';
-
+const minWindowWidth = 600;
 const integerCenter =  0;
 const mouseMuteRatio = 0.2;
 
@@ -29,8 +28,11 @@ const withPointOfView = (View) => {
     tikTak() {
       // is best working variant i tested
       this.update();
+
       const tik = () => {
-        this.update();
+        if (this.props.environment.windowWidth >= minWindowWidth) {
+          this.update();
+        }
         requestAnimationFrame(tik);
       };
       tik();

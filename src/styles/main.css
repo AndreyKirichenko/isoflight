@@ -27,13 +27,16 @@
 
 .main__info {
   align-items: flex-start;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 16px;
 }
 
 @media screen and (min-width: 600px) {
   .main__info {
+    background-color: transparent;
     padding-left: 32px;
   }
 }
