@@ -7,9 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   background-color: #fff;
-
-  background-image: url("../bg.jpg");
+  background: linear-gradient(#ddd, #fff);
   box-sizing: border-box;
+  color: #000;
   font-size: 16px;
   font-family: -apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
   font-weight: 400;
@@ -19,12 +19,6 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
-}
-
-@media screen and (min-width: 600px) {
-  body {
-    background: linear-gradient(#ddd, #fff);
-  }
 }
 
 h1 {
@@ -57,5 +51,5 @@ p {
 }
 
 a {
-  color: #009adc;
+  color: #190015;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Group } from 'react-konva';
+import { Container } from '@inlet/react-pixi';
 import PlantLine from '../PlantLine';
 
 const FieldPlants = (props) => {
@@ -23,9 +23,12 @@ const FieldPlants = (props) => {
   const scaleX = reflected ? -1: 1;
 
   return (
-    <Group scaleX={scaleX} >
+    <Container scale={{
+      x: scaleX,
+      y: 1
+    }} >
       { allPlants() }
-    </Group>
+    </Container>
   );
 };
 

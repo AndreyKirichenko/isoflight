@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Group } from 'react-konva';
-import PlantLinePath from '../PlantLinePath';
+import { Container } from '@inlet/react-pixi';
+import Path from '../Path';
 
 class PlantLine extends Component {
 
@@ -20,9 +20,9 @@ class PlantLine extends Component {
 
   static getPart(coords, fill, frontalCoords) {
     return (
-      <Group {...frontalCoords}>
-        <PlantLinePath coords={coords} fill={fill} />
-      </Group>
+      <Container {...frontalCoords}>
+        <Path d={coords} fill={fill} />
+      </Container>
     );
   }
 
@@ -49,13 +49,17 @@ class PlantLine extends Component {
 
   render() {
     if(!this.state.data) return null;
+
     const scaleX = this.state.data.reflected ? -1 : 1;
 
     return (
-      <Group scaleX={scaleX}>
+      <Container scale={{
+        x: scaleX,
+        y: 1
+      }}>
         { this.lightPart() }
         { this.darkPart() }
-      </Group>
+      </Container>
     );
   }
 }

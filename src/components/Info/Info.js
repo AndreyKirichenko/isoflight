@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, Group } from 'react-konva';
-
+import { Container, Text } from '@inlet/react-pixi'
+import PIXI from 'pixi.js';
 class Info extends Component {
 
   state = {
@@ -18,7 +18,6 @@ class Info extends Component {
     const tik = () => {
       requestAnimationFrame(tik);
       const now = performance.now();
-      // const now = new Date();
       const timeDelta = Math.ceil(now - (time || now));
       const fps = Math.ceil(1000 / timeDelta);
 
@@ -35,11 +34,14 @@ class Info extends Component {
 
   render() {
     const { fps } = this.state;
-    return (
-      <Group x='10' y='-170'>
-        <Text fontSize='16' fill='#ccc'  lineHeight='24' text={`FPS: ${fps}`} />
-      </Group>
-    );
+
+    const style = {
+      fontFamily: 'Arial',
+      fontSize: 16,
+      fill: 0xEEEEEE,
+      fontWeight: 'thin'
+    };
+    return <Text style={style} x={10} y={10} text={`FPS: ${fps}`} />;
   }
 
 }

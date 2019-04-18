@@ -6,6 +6,13 @@ class Shapes {
     fields: {}
   };
 
+  cloud({
+    pointsBetween,
+    scale
+  }) {
+
+  }
+
   plantLine({
       minHeight,
       maxHeight,

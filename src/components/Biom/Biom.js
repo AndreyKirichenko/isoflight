@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Group } from 'react-konva';
+import { Container } from '@inlet/react-pixi';
 import Field from '../Field/Field';
 import PlantLine from '../PlantLine';
 import FieldPlants from "../FieldPlants";
@@ -41,10 +41,14 @@ class Biom extends Component {
 
   getBorderLine = (borderLine) => {
     const scaleX = borderLine.reflected ? -1: 1;
+
     return (
-      <Group scaleX={scaleX}>
+      <Container  scale={{
+        x: scaleX,
+        y: 1
+      }}>
         <PlantLine {...borderLine} />
-      </Group>
+      </Container>
     );
   };
 
@@ -52,12 +56,12 @@ class Biom extends Component {
     if (!this.state.data) return null;
 
     return (
-      <Group {...this.props.frontalCoords}>
+      <Container {...this.props.frontalCoords}>
         { this.getField() }
         { this.getBorderLine(this.state.data.borderLineX) }
         { this.getBorderLine(this.state.data.borderLineY) }
         { this.getFieldPlants() }
-      </Group>
+      </Container>
     );
   }
 }
