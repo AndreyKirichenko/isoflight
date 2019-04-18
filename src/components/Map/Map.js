@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Group } from 'react-konva';
-import compose from '../../helpers/compose';
-import { withBioms } from '../HOCs';
-import Bioms from '../Bioms'
+import { Container } from '@inlet/react-pixi';
+import Bioms from '../Bioms';
 import Isometry from "../../services/Isometry";
 
 class Map extends Component {
@@ -15,14 +13,12 @@ class Map extends Component {
     const { x, y } = Isometry.toFrontalCoords(this.props.pointOfView.x, this.props.pointOfView.y);
 
     return (
-      <Group x={-x + this.props.environment.width / 2}
+      <Container x={-x + this.props.environment.width / 2}
              y={-y  + this.props.environment.height / 2}>
         <Bioms {...this.props} />
-      </Group>
+      </Container>
     );
   }
 }
 
-export default compose(
-  withBioms
-)(Map);
+export default Map;

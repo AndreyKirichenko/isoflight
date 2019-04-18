@@ -1,20 +1,29 @@
+/*.porthole {*/
+  /*!*border-radius: 30%;*!*/
+  /*display: none;*/
+  /*height: 200px;*/
+  /*overflow: hidden;*/
+  /*width: 200px;*/
+/*}*/
+
+/*@media screen and (min-width: 600px) {*/
+  /*.porthole {*/
+    /*display: block;*/
+  /*}*/
+/*}*/
+
+/*@media screen and (min-width: 768px) {*/
+  /*.porthole {*/
+    /*height: 400px;*/
+    /*width: 360px;*/
+  /*}*/
+/*}*/
+
+
 .porthole {
-  border-radius: 30%;
-  display: none;
-  height: 200px;
+  height: 100vh;
   overflow: hidden;
-  width: 200px;
-}
-
-@media screen and (min-width: 600px) {
-  .porthole {
-    display: block;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .porthole {
-    height: 400px;
-    width: 360px;
-  }
+  width: 100vw;
+  position: absolute;
+  z-index: 0;
 }

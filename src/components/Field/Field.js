@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Path } from 'react-konva';
-import CoordStringify from '../../services/CoordStringify';
+import Path from '../Path';
 
 class Field extends Component {
   state = {
@@ -13,7 +12,7 @@ class Field extends Component {
 
   componentDidMount() {
     this.setState({
-      data: CoordStringify.getString(this.props.shape)
+      data: this.props.shape
     });
   }
 
@@ -23,7 +22,7 @@ class Field extends Component {
     if(!this.state.data) return null;
 
     return (
-      <Path data={this.state.data} fill={color} />
+      <Path d={this.state.data} fill={color} />
     );
   }
 }

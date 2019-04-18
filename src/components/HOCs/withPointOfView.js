@@ -9,7 +9,7 @@ const withPointOfView = (View) => {
     state = {
       pointOfView: {
         step: 0,
-        scale: 160, //pixels per field side
+        scale: 300, //pixels per field side
         xCenter: integerCenter,
         yCenter: integerCenter,
         x: integerCenter,
