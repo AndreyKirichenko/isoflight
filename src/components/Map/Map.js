@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Container } from '@inlet/react-pixi';
+import { Container, withPixiApp } from '@inlet/react-pixi';
 import Bioms from '../Bioms';
 import Isometry from "../../services/Isometry";
+import { withPointOfView, withBioms } from '../HOCs';
+import compose from "../../helpers/compose";
 
 class Map extends Component {
   shouldComponentUpdate(nextProps) {
@@ -21,4 +23,8 @@ class Map extends Component {
   }
 }
 
-export default Map;
+export default compose(
+  withPixiApp,
+  withPointOfView,
+  withBioms
+)(Map);

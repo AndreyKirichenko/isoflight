@@ -22,20 +22,18 @@ const withPointOfView = (View) => {
     };
 
     componentDidMount() {
-      this.tikTak();
+      this.update();
+      this.props.app.ticker.add(this.tick)
     }
 
-    tikTak() {
-      // is best working variant i tested
-      this.update();
+    componentWillUnmount() {
+      this.props.app.ticker.remove(this.tick)
+    }
 
-      const tik = () => {
-        if (this.props.environment.windowWidth >= minWindowWidth) {
-          this.update();
-        }
-        requestAnimationFrame(tik);
-      };
-      tik();
+    tick = () => {
+      if (this.props.environment.windowWidth >= minWindowWidth) {
+        this.update();
+      }
     };
 
     update() {

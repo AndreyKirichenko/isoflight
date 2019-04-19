@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Text } from '@inlet/react-pixi'
-import PIXI from 'pixi.js';
+import { Text } from '@inlet/react-pixi'
 class Info extends Component {
 
   state = {

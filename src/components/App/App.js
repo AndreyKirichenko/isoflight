@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Stage, Container } from '@inlet/react-pixi';
-import { withEnvironment, withPointOfView, withBioms } from '../HOCs';
+import { withEnvironment } from '../HOCs';
 import compose from "../../helpers/compose";
 import Map from '../Map';
 import Info from "../Info";
@@ -30,6 +30,4 @@ class App extends Component {
 
 export default compose(
   withEnvironment,
-  withPointOfView,
-  withBioms
 )(App);

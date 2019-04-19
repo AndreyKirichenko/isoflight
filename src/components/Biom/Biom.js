@@ -17,10 +17,14 @@ class Biom extends Component {
     this.props.data.then((data) => {
       if (this._isMounted) {
         this.setState({
-          data
+          data,
         });
       }
     });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.data !== this.state.data;
   }
 
   componentWillUnmount() {
