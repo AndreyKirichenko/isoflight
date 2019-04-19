@@ -8,7 +8,8 @@ class Biom extends Component {
   _isMounted = false;
 
   state = {
-    data: null
+    data: null,
+    isRendered: false
   };
 
   componentDidMount() {
@@ -16,11 +17,21 @@ class Biom extends Component {
 
     this.props.data.then((data) => {
       if (this._isMounted) {
-        this.setState({
-          data
-        });
+        setTimeout(() => {
+          this.setState({
+            isRendered: true
+          });
+        }, 0);
       }
+
+      this.setState({
+        data,
+      });
     });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.data !== this.state.data;
   }
 
   componentWillUnmount() {
