@@ -1,6 +1,6 @@
 import Random from "./Random";
 import Shapes from "./Shapes";
-import {groundObjects, summer, winter} from "../presets";
+import { groundObjects, summer, winter } from "../presets";
 import Isometry from "./Isometry";
 
 class BiomPresetData {
@@ -119,20 +119,30 @@ class BiomPresetData {
     let l = null;
     let s = null;
 
+
     if(lightShape) {
       lightShape.scale = scale;
-      l = Shapes.plantLine(lightShape);
+      l = Shapes.plantLine(BiomPresetData.normalizeShapeScale(lightShape));
     }
 
     if(shadowShape) {
       shadowShape.scale = scale;
-      s = Shapes.plantLine(shadowShape);
+      s = Shapes.plantLine(BiomPresetData.normalizeShapeScale(shadowShape));
     }
 
     return {
       frontalCoords,
       lightShape: l,
       shadowShape: s,
+    }
+  };
+
+  static normalizeShapeScale = (shape) => {
+    const ratio = shape.scale / 250;
+    return {
+      ...shape,
+      minHeight: shape.minHeight * ratio,
+      maxHeight: shape.maxHeight * ratio,
     }
   };
 

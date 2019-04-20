@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import debounce from '../../helpers/debounce';
 import throttle from '../../helpers/throttle';
 
@@ -43,7 +43,7 @@ const withEnvironment = (View) => {
           environment
         }
       });
-    }, 100, false);
+    }, 200, false);
 
     setMousePosition = throttle((e) => {
       this.setState((prevState) => {

@@ -22,7 +22,6 @@ class Shapes {
       flY,
       flCX,
   }) {
-
     const averageX = scale / pointsBetween;
     const yMaxDelta = maxHeight - minHeight;
 

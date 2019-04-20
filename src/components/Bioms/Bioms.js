@@ -3,14 +3,14 @@ import Biom from '../Biom';
 
 class Bioms extends Component {
   shouldComponentUpdate(nextProps) {
-    return nextProps.ranges.id !== this.props.ranges.id
+    return nextProps.ranges.id !== this.props.ranges.id;
   }
 
   getBioms() {
-    const { biomsForRender } = this.props;
+    const { biomsForRender, scale } = this.props;
 
     return biomsForRender.map((biom) => {
-      const key = `${biom.coords.x}-${biom.coords.y}`;
+      const key = `${biom.coords.x}-${biom.coords.y}-${scale}`;
       return <Biom {...biom} key={key} />;
     });
   };

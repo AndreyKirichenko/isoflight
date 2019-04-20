@@ -24,13 +24,20 @@
 @media screen and (min-width: 600px) {
   .main__illustration {
     display: flex;
+    flex-basis: 30%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .main__illustration {
     flex-basis: 50%;
   }
 }
 
 .main__info {
   align-items: flex-start;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -39,8 +46,14 @@
 
 @media screen and (min-width: 600px) {
   .main__info {
+    flex-basis: 70%;
+    padding: 48px 32px 64px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .main__info {
     flex-basis: 50%;
-    padding-left: 32px;
   }
 }
 

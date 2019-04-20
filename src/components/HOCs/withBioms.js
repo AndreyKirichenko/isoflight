@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import BiomPreset from '../../services/BiomPreset';
 
-const RADIUS = 2;
-
 const withBioms = (View) => {
   return class extends Component {
     state = {
@@ -12,6 +10,13 @@ const withBioms = (View) => {
     };
 
     shouldComponentUpdate(nextProps) {
+      if(nextProps.scale !== this.props.scale) {
+        this.setState(() => {
+          return {
+            bioms: {}
+          }
+        });
+      }
       return nextProps.pointOfView.step !== this.props.pointOfView.step;
     }
 
@@ -30,17 +35,17 @@ const withBioms = (View) => {
     };
 
     getBioms(state, props) {
-      const bioms = state.bioms;
-
       const biomsForRender = [];
 
-      const { scale } = props.pointOfView;
+      const { bioms } = state;
 
-      const radius = RADIUS;
+      const { radius, scale } = props;
 
-      const { currentBiomX, currentBiomY } = this.getCurrentBiomPosition(props.pointOfView);
+      if(!scale) return null;
 
-      const ranges = this.getRanges(currentBiomX, currentBiomY, radius);
+      const { currentBiomX, currentBiomY } = this.getCurrentBiomPosition(props.pointOfView, scale);
+
+      const ranges = this.getRanges({ x: currentBiomX, y: currentBiomY, radius, scale });
 
       const { x1, x2, y1, y2 } = ranges;
 
@@ -48,6 +53,7 @@ const withBioms = (View) => {
         if(!bioms[x]) {
           bioms[x] = {};
         }
+
         for(let y = y1; y <= y2; y++) {
           if(!bioms[x][y]) {
             bioms[x][y] = new BiomPreset(x, y, scale);
@@ -63,8 +69,8 @@ const withBioms = (View) => {
       };
     }
 
-    getCurrentBiomPosition(pointOfView) {
-      const { scale, x, y } = pointOfView;
+    getCurrentBiomPosition(pointOfView, scale) {
+      const { x, y } = pointOfView;
 
       const currentBiomX = Math.floor(x / scale);
       const currentBiomY = Math.floor(y / scale);
@@ -75,14 +81,14 @@ const withBioms = (View) => {
       }
     }
 
-    getRanges(x, y, radius) {
+    getRanges({ x, y, radius, scale }) {
       const x1 = x - radius;
       const x2 = x + radius;
 
       const y1 = y - radius;
       const y2 = y + radius;
 
-      const id = `${x1}-${x2}-${y1}-${y2}`;
+      const id = `${x1}-${x2}-${y1}-${y2}-${scale}`;
 
       return {
         x1,
