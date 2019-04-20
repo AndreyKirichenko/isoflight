@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, withPixiApp } from '@inlet/react-pixi';
 import Bioms from '../Bioms';
 import Isometry from "../../services/Isometry";
-import { withPointOfView, withBioms } from '../HOCs';
+import { withScale, withPointOfView, withBioms } from '../HOCs';
 import compose from "../../helpers/compose";
 
 class Map extends Component {
@@ -25,6 +25,7 @@ class Map extends Component {
 
 export default compose(
   withPixiApp,
+  withScale,
   withPointOfView,
   withBioms
 )(Map);

@@ -16,7 +16,6 @@ class BiomPreset {
       });
     });
 
-
     return Object.assign({
       scale,
       coords: {

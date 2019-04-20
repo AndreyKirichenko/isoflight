@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-const minWindowWidth = 600;
 const integerCenter =  0;
 const mouseMuteRatio = 0.2;
 
@@ -9,13 +8,12 @@ const withPointOfView = (View) => {
     state = {
       pointOfView: {
         step: 0,
-        scale: 300, //pixels per field side
         xCenter: integerCenter,
         yCenter: integerCenter,
         x: integerCenter,
         y: integerCenter,
-        speedX: 1,
-        speedY: -1,
+        speedX: 0.25,
+        speedY: -0.25,
         maxSpeedX: 1,
         maxSpeedY: 1
       }
@@ -31,9 +29,7 @@ const withPointOfView = (View) => {
     }
 
     tick = () => {
-      if (this.props.environment.windowWidth >= minWindowWidth) {
-        this.update();
-      }
+      this.update();
     };
 
     update() {
@@ -85,8 +81,6 @@ const withPointOfView = (View) => {
 
       let speedX = pointOfView.speedX;
       let speedY = pointOfView.speedY;
-
-
 
       if(-mouseMuteRatio > ratioMouseX || ratioMouseX > mouseMuteRatio) {
         speedX = -ratioMouseX * maxSpeedX;
