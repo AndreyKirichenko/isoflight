@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Container, withPixiApp } from '@inlet/react-pixi';
 import Bioms from '../Bioms';
-import Isometry from "../../services/Isometry";
+import Isometry from '../../services/Isometry';
 import { withScale, withPointOfView, withBioms } from '../HOCs';
-import compose from "../../helpers/compose";
+import compose from '../../helpers/compose';
+import Clouds from '../Clouds';
 
 class Map extends Component {
   shouldComponentUpdate(nextProps) {
@@ -15,10 +16,15 @@ class Map extends Component {
     const { x, y } = Isometry.toFrontalCoords(this.props.pointOfView.x, this.props.pointOfView.y);
 
     return (
-      <Container x={-x + this.props.environment.width / 2}
-             y={-y  + this.props.environment.height / 2}>
-        <Bioms {...this.props} />
+      <Container>
+        <Clouds />
+        {/*<Container x={-x + this.props.environment.width / 2}*/}
+                   {/*y={-y  + this.props.environment.height / 2}>*/}
+          {/*<Bioms {...this.props} />*/}
+
+        {/*</Container>*/}
       </Container>
+
     );
   }
 }

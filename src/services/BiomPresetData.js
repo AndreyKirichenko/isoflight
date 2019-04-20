@@ -1,7 +1,7 @@
-import Random from "./Random";
-import Shapes from "./Shapes";
-import { groundObjects, summer, winter } from "../presets";
-import Isometry from "./Isometry";
+import Random from './Random';
+import Shapes from './Shapes';
+import { groundObjects, summer, winter } from '../presets';
+import Isometry from './Isometry';
 
 class BiomPresetData {
   static getRandomBiomPreset = (scale, season = 'summer') => {

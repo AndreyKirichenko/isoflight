@@ -8,9 +8,62 @@ class Shapes {
 
   cloud({
     pointsBetween,
-    scale
+    width,
+    height
   }) {
+    const averageX = width / pointsBetween;
+    const averageY = height / pointsBetween * 2;
 
+    let pointsArr = [
+      {
+        type: 'M',
+        x: 0,
+        y: 0
+      }
+    ];
+
+    const halfPointsBetween = Math.round(pointsBetween / 2);
+
+    for (let i = 1; i < pointsBetween + 1; i++) {
+      let x = i * averageX;
+      let y = -i * averageY;
+
+      if (i > halfPointsBetween) {
+        y = height - ((i ) * averageY)
+      }
+
+      pointsArr.push(
+        {
+          type: 'L',
+          x,
+          y,
+          // c1x,
+          // c1y,
+          // c2x,
+          // c2y
+        }
+      );
+    }
+
+    pointsArr.push(
+      {
+        type: 'L',
+        x: width,
+        y: 0
+      },
+    );
+
+    pointsArr.push(
+      {
+        type: 'L',
+        x: 0,
+        y: 0
+      },
+    );
+
+    console.log(pointsArr);
+
+    return pointsArr;
   }
 
   plantLine({

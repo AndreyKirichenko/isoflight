@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { Stage, Container } from '@inlet/react-pixi';
 import { withEnvironment } from '../HOCs';
-import compose from "../../helpers/compose";
+import compose from '../../helpers/compose';
 import Map from '../Map';
-import Info from "../Info";
+import Info from '../Info';
 
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
 
     const options = {
       antialias: true,
-      backgroundColor: 0xFFFFFF,
+      backgroundColor: 0xCCCCCC,
     };
 
     return (

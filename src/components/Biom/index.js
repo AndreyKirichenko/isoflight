@@ -1,3 +1,3 @@
-import Biom from "./Biom";
+import Biom from './Biom';
 
 export default Biom;

@@ -18,7 +18,7 @@ class Path extends Component {
   };
 
   draw = (g) => {
-    const { d, fill } = this.props;
+    const { d = [], fill } = this.props;
     g.beginFill(fill);
 
     d.forEach((data) => {
@@ -30,7 +30,7 @@ class Path extends Component {
 
   render() {
     return (
-      <Graphics draw={this.draw} />
+      <Graphics {...this.props} draw={this.draw} />
     );
   }
 }

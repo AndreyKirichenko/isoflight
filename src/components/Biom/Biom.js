@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container } from '@inlet/react-pixi';
 import Field from '../Field/Field';
 import PlantLine from '../PlantLine';
-import FieldPlants from "../FieldPlants";
+import FieldPlants from '../FieldPlants';
 
 class Biom extends Component {
   _isMounted = false;
