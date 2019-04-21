@@ -3,11 +3,16 @@ import Path from '../Path';
 import Shapes from '../../services/Shapes';
 
 class Clouds extends Component {
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return false;
+  }
+
   render() {
     const d = Shapes.cloud({
       height: 80,
-      pointsBetween: 5,
-      width: 200
+      width: 400,
+      leftPoints: 3,
+      rightPoints: 4
     });
     //
     // const d = Shapes.plantLine({

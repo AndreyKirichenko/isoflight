@@ -1,5 +1,8 @@
 import Isometry from './Isometry';
 
+
+const cloudCoef = 1.1;
+
 class Shapes {
 
   cached = {
@@ -7,14 +10,19 @@ class Shapes {
   };
 
   cloud({
-    pointsBetween,
     width,
-    height
+    height,
+    leftPoints,
+    rightPoints,
+    fuzziness = 1.1
   }) {
-    const averageX = width / pointsBetween;
-    const averageY = height / pointsBetween * 2;
+    const pointsAtAll = leftPoints + rightPoints + 1;
 
-    let pointsArr = [
+    const averageX = width / pointsAtAll;
+    const leftAverageY = height / (leftPoints);
+    const rightAverageY = height / (rightPoints);
+
+    const pointsArr = [
       {
         type: 'M',
         x: 0,
@@ -22,19 +30,13 @@ class Shapes {
       }
     ];
 
-    const halfPointsBetween = Math.round(pointsBetween / 2);
-
-    for (let i = 1; i < pointsBetween + 1; i++) {
-      let x = i * averageX;
-      let y = -i * averageY;
-
-      if (i > halfPointsBetween) {
-        y = height - ((i ) * averageY)
-      }
+    for (let i = 0; i <= leftPoints; i++) {
+      let x = Math.round(i * averageX);
+      let y = Math.round(-i * leftAverageY);
 
       pointsArr.push(
         {
-          type: 'L',
+          type: 'C',
           x,
           y,
           // c1x,
@@ -45,13 +47,35 @@ class Shapes {
       );
     }
 
-    pointsArr.push(
-      {
-        type: 'L',
-        x: width,
-        y: 0
-      },
-    );
+    for (let i = pointsAtAll - 1; i >= pointsAtAll - 1 - rightPoints; i--) {
+      let x = Math.round(i * averageX);
+      let y = -((pointsAtAll - 1 - i)) * rightAverageY;
+
+      pointsArr[i] = {
+        type: 'C',
+        x,
+        y,
+        // c1x,
+        // c1y,
+        // c2x,
+        // c2y
+      }
+    }
+
+    for (let i = 1; i < pointsAtAll; i++) {
+      let f = fuzziness;
+
+      // if (i < leftPoints) {
+      //   f = -fuzziness;
+      // }
+
+      pointsArr[i].c1x = pointsArr[i - 1].x * f;
+      pointsArr[i].c1y = pointsArr[i - 1].y * f;
+      pointsArr[i].c2x = pointsArr[i].x * f;
+      pointsArr[i].c2y = pointsArr[i].y * f;
+
+      console.log(pointsArr[i]);
+    }
 
     pointsArr.push(
       {
@@ -60,8 +84,6 @@ class Shapes {
         y: 0
       },
     );
-
-    console.log(pointsArr);
 
     return pointsArr;
   }
