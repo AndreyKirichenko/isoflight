@@ -17,10 +17,10 @@ class Map extends Component {
 
     return (
       <Container>
-        {/*<Container x={-x + this.props.environment.width / 2}*/}
-                   {/*y={-y  + this.props.environment.height / 2}>*/}
-          {/*<Bioms {...this.props} />*/}
-        {/*</Container>*/}
+        <Container x={-x + this.props.environment.width / 2}
+                   y={-y  + this.props.environment.height / 2}>
+          <Bioms {...this.props} />
+        </Container>
         <Clouds />
       </Container>
 

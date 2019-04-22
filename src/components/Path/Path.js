@@ -21,14 +21,16 @@ class Path extends Component {
     const { d = [], fill } = this.props;
     g.beginFill(fill);
 
-    g.lineStyle(4, 0xffd900, 1)
-
     d.forEach((data) => {
       this[data.type.toLowerCase()](g, data);
     });
 
     g.endFill();
   };
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return false;
+  }
 
   render() {
     return (

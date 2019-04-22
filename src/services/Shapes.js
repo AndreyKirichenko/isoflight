@@ -1,10 +1,6 @@
 import Isometry from './Isometry';
 
-
-const cloudCoef = 1.1;
-
 class Shapes {
-
   cached = {
     fields: {}
   };
@@ -14,67 +10,55 @@ class Shapes {
     height,
     leftPoints,
     rightPoints,
-    fuzziness = 1.1
+    fuzziness
   }) {
     const pointsAtAll = leftPoints + rightPoints + 1;
-
     const averageX = width / pointsAtAll;
     const leftAverageY = height / (leftPoints);
     const rightAverageY = height / (rightPoints);
 
-    const pointsArr = [
-      {
-        type: 'M',
-        x: 0,
-        y: 0
+    const points = {};
+    const pointsArr = [];
+
+    const createCurvedPoint = (currentPoint, prevPoint) => {
+      if (prevPoint) {
+        currentPoint.c1x = prevPoint.x * fuzziness;
+        currentPoint.c1y = prevPoint.y * fuzziness;
+      } else {
+        currentPoint.c1x = currentPoint.x;
+        currentPoint.c1y = currentPoint.y;
       }
-    ];
 
-    for (let i = 0; i <= leftPoints; i++) {
+      currentPoint.c2x = currentPoint.x * fuzziness;
+      currentPoint.c2y = currentPoint.y * fuzziness;
+
+      return currentPoint;
+    };
+
+    for (let i = -leftPoints; i <= 0; i++) {
       let x = Math.round(i * averageX);
-      let y = Math.round(-i * leftAverageY);
+      let y = Math.round((i + leftPoints) * -leftAverageY);
 
-      pointsArr.push(
-        {
-          type: 'C',
-          x,
-          y,
-          // c1x,
-          // c1y,
-          // c2x,
-          // c2y
-        }
-      );
-    }
-
-    for (let i = pointsAtAll - 1; i >= pointsAtAll - 1 - rightPoints; i--) {
-      let x = Math.round(i * averageX);
-      let y = -((pointsAtAll - 1 - i)) * rightAverageY;
-
-      pointsArr[i] = {
+      points[i] = {
         type: 'C',
         x,
-        y,
-        // c1x,
-        // c1y,
-        // c2x,
-        // c2y
-      }
+        y
+      };
+
+      pointsArr.push(createCurvedPoint(points[i], points[i-1]));
     }
 
-    for (let i = 1; i < pointsAtAll; i++) {
-      let f = fuzziness;
+    for (let i = 1; i <= rightPoints; i++) {
+      let x = Math.round(i * averageX);
+      let y = -((rightPoints - i)) * rightAverageY;
 
-      // if (i < leftPoints) {
-      //   f = -fuzziness;
-      // }
+      points[i] = {
+        type: 'C',
+        x,
+        y
+      };
 
-      pointsArr[i].c1x = pointsArr[i - 1].x * f;
-      pointsArr[i].c1y = pointsArr[i - 1].y * f;
-      pointsArr[i].c2x = pointsArr[i].x * f;
-      pointsArr[i].c2y = pointsArr[i].y * f;
-
-      console.log(pointsArr[i]);
+      pointsArr.push(createCurvedPoint(points[i], points[i-1]));
     }
 
     pointsArr.push(
