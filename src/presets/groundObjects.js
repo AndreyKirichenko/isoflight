@@ -89,7 +89,7 @@ const groundObjects = {
     },
 
     bed: {
-      quantity: 32,
+      quantity: 20,
 
       lightShape: {
         minHeight: 2,
@@ -111,7 +111,7 @@ const groundObjects = {
     },
 
     furrow: {
-      quantity: 64,
+      quantity: 48,
 
       lightShape: {
         minHeight: 2,

@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Graphics } from '@inlet/react-pixi';
 
 class Path extends Component {
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return false;
+  }
+
   m = (g, data) => {
     const { x, y } = data;
     g.moveTo(x, y);
@@ -27,10 +31,6 @@ class Path extends Component {
 
     g.endFill();
   };
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return false;
-  }
 
   render() {
     return (

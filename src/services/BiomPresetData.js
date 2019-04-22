@@ -12,13 +12,17 @@ class BiomPresetData {
     const fieldPlants = BiomPresetData.getRandomFieldPlantsPreset(colorSchemes, field.id, scale);
 
     const borderLineX = BiomPresetData.getRandomBorderLinePreset(colorSchemes, scale);
+
     const borderLineY = BiomPresetData.getRandomBorderLinePreset(colorSchemes, scale, true);
+
+    const cloud = BiomPresetData.getCloud(scale);
 
     return {
       field,
       fieldPlants,
       borderLineX,
-      borderLineY
+      borderLineY,
+      cloud
     };
   };
 
@@ -134,6 +138,30 @@ class BiomPresetData {
       frontalCoords,
       lightShape: l,
       shadowShape: s,
+    }
+  };
+
+  static getCloud = (scale) => {
+    if(Random.getRandomBoolByChance(50)) {
+      const width = scale + scale / 2 * Math.random();
+
+      const preHeight = Isometry.getY(scale);
+
+      const height = preHeight / 3 + preHeight / 3 * Math.random();
+
+      const leftPoints = Random.getRandomArrayItem([3, 4, 5, 6, 7]);
+
+      const rightPoints = Random.getRandomArrayItem([3, 4, 5]);
+
+      const fuzziness = 1.2 + 0.2 * Math.random();
+
+      return {
+        d: Shapes.cloud({ width, height, leftPoints, rightPoints, fuzziness }),
+        fill: 0xccffff
+      }
+
+    } else {
+      return null;
     }
   };
 

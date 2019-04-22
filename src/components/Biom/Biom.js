@@ -3,6 +3,7 @@ import { Container } from '@inlet/react-pixi';
 import Field from '../Field/Field';
 import PlantLine from '../PlantLine';
 import FieldPlants from '../FieldPlants';
+import Cloud from "../Cloud";
 
 class Biom extends Component {
   _isMounted = false;
@@ -31,15 +32,15 @@ class Biom extends Component {
     this._isMounted = false;
   }
 
-  getField = () => {
+  getField = (field) => {
     return (
-      <Field { ...this.state.data.field} isCurrent={false} />
+      <Field { ...field} isCurrent={false} />
     );
   };
 
-  getFieldPlants = () => {
+  getFieldPlants = (fieldPlants) => {
     return (
-      <FieldPlants { ...this.state.data.fieldPlants } />
+      <FieldPlants { ...fieldPlants } />
     );
   };
 
@@ -56,15 +57,25 @@ class Biom extends Component {
     );
   };
 
+  getCloud = (cloud) => {
+    if(!cloud) return null;
+    return (
+      <Cloud {...cloud} />
+    );
+  };
+
   render() {
     if (!this.state.data) return null;
 
+    const { borderLineX, borderLineY, field, fieldPlants, cloud } = this.state.data;
+
     return (
       <Container {...this.props.frontalCoords}>
-        { this.getField() }
-        { this.getBorderLine(this.state.data.borderLineX) }
-        { this.getBorderLine(this.state.data.borderLineY) }
-        { this.getFieldPlants() }
+        { this.getField(field) }
+        { this.getBorderLine(borderLineX) }
+        { this.getBorderLine(borderLineY) }
+        { this.getFieldPlants(fieldPlants) }
+        { this.getCloud(cloud) }
       </Container>
     );
   }
