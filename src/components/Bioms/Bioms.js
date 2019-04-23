@@ -7,11 +7,12 @@ class Bioms extends Component {
   }
 
   getBioms() {
-    const { biomsForRender, scale } = this.props;
+    const { biomsForRender } = this.props;
 
     return biomsForRender.map((biom) => {
-      const key = `${biom.coords.x}-${biom.coords.y}-${scale}`;
-      return <Biom {...biom} key={key} />;
+      const { key, biomPreset } = biom;
+
+      return <Biom biomPreset={biomPreset} key={key} />;
     });
   };
 

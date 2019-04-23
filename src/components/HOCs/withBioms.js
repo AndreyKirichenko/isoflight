@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BiomPreset from '../../services/BiomPreset';
+import worker from '../../workers/biomDataWorkerWrapper';
 
 const withBioms = (View) => {
   return class extends Component {
@@ -56,7 +56,7 @@ const withBioms = (View) => {
 
         for(let y = y1; y <= y2; y++) {
           if(!bioms[x][y]) {
-            bioms[x][y] = new BiomPreset(x, y, scale);
+            bioms[x][y] = this.createBiomPreset(x, y, scale);
           }
           biomsForRender.push(bioms[x][y]);
         }
@@ -67,6 +67,25 @@ const withBioms = (View) => {
         biomsForRender,
         ranges
       };
+    }
+
+    createBiomPreset(x, y, scale) {
+      const key = `${x}-${y}-${scale}`;
+
+      const biomPreset = new Promise((resolve) => {
+        worker.postMessage({ x, y, scale, key });
+
+        worker.addEventListener('message', (event) => {
+          if (key === event.data.key) {
+            resolve(event.data.biomPreset)
+          }
+        });
+      });
+
+      return {
+        key,
+        biomPreset
+      }
     }
 
     getCurrentBiomPosition(pointOfView, scale) {
