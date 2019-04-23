@@ -15,7 +15,8 @@ class Biom extends Component {
   componentDidMount() {
     this._isMounted = true;
 
-    this.props.data.then((data) => {
+    this.props.biomPreset.then((data) => {
+
       if (this._isMounted) {
         this.setState({
           data,
@@ -67,15 +68,15 @@ class Biom extends Component {
   render() {
     if (!this.state.data) return null;
 
-    const { borderLineX, borderLineY, field, fieldPlants, cloud } = this.state.data;
+    const { borderLineX, borderLineY, field, fieldPlants, cloud, frontalCoords } = this.state.data;
 
     return (
-      <Container {...this.props.frontalCoords}>
+      <Container {...frontalCoords}>
         { this.getField(field) }
         { this.getBorderLine(borderLineX) }
         { this.getBorderLine(borderLineY) }
         { this.getFieldPlants(fieldPlants) }
-        { this.getCloud(cloud) }
+        {/*{ this.getCloud(cloud) }*/}
       </Container>
     );
   }
