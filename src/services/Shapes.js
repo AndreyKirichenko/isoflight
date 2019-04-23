@@ -1,16 +1,75 @@
 import Isometry from './Isometry';
 
 class Shapes {
-
   cached = {
     fields: {}
   };
 
   cloud({
-    pointsBetween,
-    scale
+    width,
+    height,
+    leftPoints,
+    rightPoints,
+    fuzziness
   }) {
+    const pointsAtAll = leftPoints + rightPoints + 1;
+    const averageX = width / pointsAtAll;
+    const leftAverageY = height / (leftPoints);
+    const rightAverageY = height / (rightPoints);
 
+    const points = {};
+    const pointsArr = [];
+
+    const createCurvedPoint = (currentPoint, prevPoint) => {
+      if (prevPoint) {
+        currentPoint.c1x = prevPoint.x * fuzziness;
+        currentPoint.c1y = prevPoint.y * fuzziness;
+      } else {
+        currentPoint.c1x = currentPoint.x;
+        currentPoint.c1y = currentPoint.y;
+      }
+
+      currentPoint.c2x = currentPoint.x * fuzziness;
+      currentPoint.c2y = currentPoint.y * fuzziness;
+
+      return currentPoint;
+    };
+
+    for (let i = -leftPoints; i <= 0; i++) {
+      let x = Math.round(i * averageX);
+      let y = Math.round((i + leftPoints) * -leftAverageY);
+
+      points[i] = {
+        type: 'C',
+        x,
+        y
+      };
+
+      pointsArr.push(createCurvedPoint(points[i], points[i-1]));
+    }
+
+    for (let i = 1; i <= rightPoints; i++) {
+      let x = Math.round(i * averageX);
+      let y = -((rightPoints - i)) * rightAverageY;
+
+      points[i] = {
+        type: 'C',
+        x,
+        y
+      };
+
+      pointsArr.push(createCurvedPoint(points[i], points[i-1]));
+    }
+
+    pointsArr.push(
+      {
+        type: 'L',
+        x: 0,
+        y: 0
+      },
+    );
+
+    return pointsArr;
   }
 
   plantLine({

@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Graphics } from '@inlet/react-pixi';
 
 class Path extends Component {
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return false;
+  }
+
   m = (g, data) => {
     const { x, y } = data;
     g.moveTo(x, y);
@@ -18,7 +22,7 @@ class Path extends Component {
   };
 
   draw = (g) => {
-    const { d, fill } = this.props;
+    const { d = [], fill } = this.props;
     g.beginFill(fill);
 
     d.forEach((data) => {
@@ -30,7 +34,7 @@ class Path extends Component {
 
   render() {
     return (
-      <Graphics draw={this.draw} />
+      <Graphics {...this.props} draw={this.draw} />
     );
   }
 }

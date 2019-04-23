@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Container, withPixiApp } from '@inlet/react-pixi';
 import Bioms from '../Bioms';
-import Isometry from "../../services/Isometry";
+import Isometry from '../../services/Isometry';
 import { withScale, withPointOfView, withBioms } from '../HOCs';
-import compose from "../../helpers/compose";
+import compose from '../../helpers/compose';
+import Cloud from '../Cloud';
 
 class Map extends Component {
   shouldComponentUpdate(nextProps) {
@@ -16,7 +17,7 @@ class Map extends Component {
 
     return (
       <Container x={-x + this.props.environment.width / 2}
-             y={-y  + this.props.environment.height / 2}>
+                 y={-y  + this.props.environment.height / 2}>
         <Bioms {...this.props} />
       </Container>
     );

@@ -1,4 +1,4 @@
-import Isometry from "./Isometry";
+import Isometry from './Isometry';
 import worker from '../workers/biomDataWorkerWrapper';
 
 
