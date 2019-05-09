@@ -13,9 +13,11 @@ const devserver = require('./webpack/devserver');
 const lintJS = require('./webpack/js.lint');
 const lintCSS = require('./webpack/sass.lint');
 
+const Webpack = require('webpack');
+
 const PATHS = {
   source: path.join(__dirname, 'src'),
-  build: path.join(__dirname, 'build'),
+  build: path.join(__dirname, 'build')
 };
 
 const common = merge([
@@ -45,7 +47,6 @@ const common = merge([
   webworker()
 ]);
 
-
 module.exports = function(env, argv) {
   if (argv.mode === 'development') {
     return merge([
@@ -53,7 +54,7 @@ module.exports = function(env, argv) {
       devserver(),
       sourceMap(),
       // lintJS({ paths: PATHS.source }),
-      lintCSS()
+      // lintCSS()
     ]);
   }
 
