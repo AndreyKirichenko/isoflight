@@ -4,7 +4,7 @@ import Bioms from '../Bioms';
 import Isometry from '../../services/Isometry';
 import { withScale, withPointOfView, withBioms } from '../HOCs';
 import compose from '../../helpers/compose';
-import Cloud from '../Cloud';
+import Clouds from '../Clouds';
 
 class Map extends Component {
   shouldComponentUpdate(nextProps) {

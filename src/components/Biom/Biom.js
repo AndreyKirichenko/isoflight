@@ -3,7 +3,7 @@ import { Container } from '@inlet/react-pixi';
 import Field from '../Field/Field';
 import PlantLine from '../PlantLine';
 import FieldPlants from '../FieldPlants';
-import Cloud from "../Cloud";
+import Clouds from "../Clouds";
 
 class Biom extends Component {
   _isMounted = false;
@@ -61,7 +61,7 @@ class Biom extends Component {
   getCloud = (cloud) => {
     if(!cloud) return null;
     return (
-      <Cloud {...cloud} />
+      <Clouds {...cloud} />
     );
   };
 
