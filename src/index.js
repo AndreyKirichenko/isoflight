@@ -4,6 +4,4 @@ import App from './components/App/';
 import './styles/index.scss';
 
 const root = '.porthole';
-// ReactDOM.render(<App root={root} />, document.querySelector(root));
-
-console.log(window, process);
+ReactDOM.render(<App root={root} />, document.querySelector(root));

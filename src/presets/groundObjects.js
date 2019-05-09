@@ -45,7 +45,7 @@ const groundObjects = {
     },
 
     gardenTrees: {
-      quantity: 20,
+      quantity: 16,
 
       lightShape: {
         minHeight: 4,
@@ -67,7 +67,7 @@ const groundObjects = {
     },
 
     grapes: {
-      quantity: 24,
+      quantity: 20,
 
       lightShape: {
         minHeight: 4,
@@ -89,7 +89,7 @@ const groundObjects = {
     },
 
     bed: {
-      quantity: 20,
+      quantity: 30,
 
       lightShape: {
         minHeight: 2,
@@ -111,7 +111,7 @@ const groundObjects = {
     },
 
     furrow: {
-      quantity: 48,
+      quantity: 0,
 
       lightShape: {
         minHeight: 2,

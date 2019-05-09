@@ -7,13 +7,12 @@ const js = require('./webpack/js');
 const css = require('./webpack/css');
 const favicon = require('./webpack/favicon');
 const webworker = require('./webpack/webworker');
+const nodeEnv = require('./webpack/node.env');
 
 const sourceMap = require('./webpack/sourceMap');
 const devserver = require('./webpack/devserver');
 const lintJS = require('./webpack/js.lint');
 const lintCSS = require('./webpack/sass.lint');
-
-const Webpack = require('webpack');
 
 const PATHS = {
   source: path.join(__dirname, 'src'),
@@ -48,19 +47,22 @@ const common = merge([
 ]);
 
 module.exports = function(env, argv) {
+  console.log(argv.mode);
   if (argv.mode === 'development') {
     return merge([
       common,
       devserver(),
       sourceMap(),
       // lintJS({ paths: PATHS.source }),
-      // lintCSS()
+      lintCSS(),
+      nodeEnv(argv.mode)
     ]);
   }
 
   if (argv.mode === 'production') {
     return merge([
-      common
+      common,
+      nodeEnv(argv.mode)
     ]);
   }
 };
