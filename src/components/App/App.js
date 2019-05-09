@@ -7,6 +7,14 @@ import Info from '../Info';
 
 
 class App extends Component {
+  static getInfo() {
+    if(NODE_ENV === 'development') {
+      return <Info />;
+    }
+
+    return null;
+  }
+
   render() {
     const { environment: { width, height } } = this.props;
 
@@ -21,7 +29,9 @@ class App extends Component {
              height={height}>
         <Container>
           <Map { ...this.props } />
-          <Info />
+
+          { App.getInfo() }
+
         </Container>
       </Stage>
     );
